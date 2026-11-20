@@ -3,15 +3,47 @@
   "$id": "scoreboard.schema.json",
   "title": "scoreboard",
   "type": "object",
-  "required": ["round_id", "generated_at", "deliveries", "by_model", "by_model_category", "metrics", "notes"],
+  "required": [
+    "round_id",
+    "generated_at",
+    "deliveries",
+    "by_model",
+    "by_model_category",
+    "metrics",
+    "notes"
+  ],
   "additionalProperties": false,
   "properties": {
-    "round_id": { "type": "string", "pattern": "^R[0-9]{3}(-selftest|b)?$" },
-    "generated_at": { "type": "string", "format": "date-time" },
-    "deliveries": { "type": "array", "items": { "type": "object" } },
-    "by_model": { "type": "array", "items": { "type": "object" } },
-    "by_model_category": { "type": "array", "items": { "type": "object" } },
-    "metrics": { "type": "object" },
-    "notes": { "type": "string" }
+    "round_id": {
+      "type": "string",
+      "pattern": "^R[0-9]{3}(-selftest|b)?$"
+    },
+    "generated_at": {
+      "type": "string"
+    },
+    "deliveries": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "by_model": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "by_model_category": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "metrics": {
+      "type": "object"
+    },
+    "notes": {
+      "type": "string"
+    }
   }
 }

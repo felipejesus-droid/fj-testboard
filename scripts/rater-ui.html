@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Avaliador — FJ-TestBoard</title>
+<style>
+:root {
+  --ink: #0A1628;
+  --accent: #00D4FF;
+  --gold: #DCAF3C;
+  --paper: #f7f5ef;
+  --muted: #5a6b7d;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Syne", "DM Sans", "Segoe UI", system-ui, sans-serif;
+}
+header {
+  background: var(--ink);
+  color: #fff;
+  padding: 14px 20px;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+header h1 { font-size: 18px; margin: 0; font-family: "Syne", system-ui, sans-serif; }
+header .badge { background: var(--gold); color: var(--ink); font-size: 11px; padding: 3px 8px; border-radius: 12px; letter-spacing: .06em; }
+header select { padding: 6px 10px; border-radius: 8px; border: 1px solid var(--accent); font-family: inherit; }
+header #status { font-size: 12px; color: var(--accent); }
+main { max-width: 860px; margin: 0 auto; padding: 20px; }
+.card {
+  background: #fff;
+  border: 1px solid #e3ded2;
+  border-radius: 14px;
+  padding: 18px 20px;
+  margin-bottom: 18px;
+}
+.card h2 { margin: 0 0 4px; font-size: 16px; }
+.meta { color: var(--muted); font-size: 12px; margin-bottom: 10px; }
+.output {
+  border: 1px solid #eee;
+  background: #fcfbf7;
+  border-radius: 8px;
+  padding: 12px;
+  font-family: "DM Mono", ui-monospace, Consolas, monospace;
+  font-size: 12px;
+  white-space: pre-wrap;
+  max-height: 320px;
+  overflow: auto;
+}
+.checks .fail { color: #b1122e; font-weight: 600; }
+.checks .ok { color: #1d7a3e; }
+.crit { margin: 10px 0; }
+.crit label { font-weight: 600; font-size: 13px; }
+.crit .anchor { color: var(--muted); font-size: 12px; min-height: 2.4em; display: block; margin-top: 2px; }
+.crit input[type="range"] { width: 100%; accent-color: var(--accent); }
+.row { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; margin-top: 10px; }
+button {
+  background: var(--ink); color: #fff; border: 0; border-radius: 8px;
+  padding: 10px 18px; font-family: inherit; font-size: 14px; cursor: pointer;
+}
+button.secondary { background: transparent; color: var(--ink); border: 1px solid var(--ink); }
+input[type="number"], input[type="text"], textarea, select {
+  padding: 8px; border-radius: 8px; border: 1px solid #ccc; font-family: "DM Sans", system-ui, sans-serif;
+}
+textarea { width: 100%; min-height: 60px; }
+.approval { border: 1px dashed var(--gold); padding: 10px; border-radius: 10px; margin-top: 12px; }
+.hidden { display: none; }
+.warning { background: #fdf3d7; border: 1px solid var(--gold); padding: 10px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+footer { color: var(--muted); font-size: 11px; text-align: center; padding: 20px; }
+pre.leak { color: #b1122e; }
+</style>
+</head>
+<body>
+<header>
+  <h1>FJ-TestBoard</h1>
+  <span class="badge">INTERNO</span>
+  <select id="round"><option value="">carregando…</option></select>
+  <span id="status"></span>
+</header>
+<main>
+  <div id="content"><p>Escolha uma rodada acima.</p></div>
+</main>
+<footer>FJ-TestBoard · avaliação humana em loopback 127.0.0.1:4173 · os modelos ficam escondidos até a rodada completa.</footer>
+<script>
+var state = { entries: [], current: 0, timerStart: Date.now(), rater: 'Felipe Jesus' };
+var $ = function (id) { return document.getElementById(id); };
+
+function loadRounds() {
+  fetch('/api/rounds').then(function (r) { return r.json(); }).then(function (d) {
+    var sel = $('round');
+    sel.innerHTML = '';
+    d.rounds.forEach(function (id) {
+      var o = document.createElement('option');
+      o.value = id; o.textContent = id;
+      sel.appendChild(o);
+    });
+    if (d.rounds.length) loadRound(d.rounds[0]);
+  });
+}
+
+$('round').addEventListener('change', function () { loadRound(this.value); });
+
+function loadRound(id) {
+  if (!id) return;
+  fetch('/api/round?id=' + id).then(function (r) { return r.json(); }).then(function (d) {
+    if (d.error) { $('content').textContent = d.error; return; }
+    state.entries = d.entries; state.current = 0;
+    refreshStatus(id);
+    render();
+  });
+}
+
+function refreshStatus(id) {
+  fetch('/api/status?id=' + id).then(function (r) { return r.json(); }).then(function (s) {
+    $('status').textContent = s.status.rated + ' de ' + s.status.total + ' avaliadas';
+  });
+}
+
+function anchorFor(rubric, key, value) {
+  if (!rubric || !rubric.criteria[key]) return { 1: '—', 3: '—', 5: '—' }[value] || '';
+  var a = rubric.criteria[key].anchors;
+  if (a[value] !== undefined) return a[value];
+  var nearest = value <= 1 ? 1 : value <= 3 ? 3 : 5;
+  return a[nearest];
+}
+
+function render() {
+  var e = state.entries[state.current];
+  var c = $('content');
+  if (!e) { c.innerHTML = '<div class="card"><p>Toda a rodada está avaliada. Use “revelar modelos”.</p></div>'; revealButton(); return; }
+  state.timerStart = Date.now();
+  var html = '';
+  html += '<div class="card">';
+  html += '<h2>' + e.blind_id + '</h2>';
+  html += '<div class="meta">tarefa ' + e.task_id + ' · ' + (e.task_title || '') + ' · categoria ' + e.category + ' · tentativa a' + e.attempt + '</div>';
+  var hardFails = 0;
+  html += '<div class="checks">';
+  e.auto_checks.forEach(function (ck) {
+    if (!ck.pass && ck.kind === 'hard') hardFails++;
+    html += '<div class="' + (ck.pass ? 'ok' : (ck.kind === 'hard' ? 'fail' : 'meta')) + '">' + (ck.pass ? '✓' : '✗') + ' [' + ck.kind + '] ' + ck.id + ' — ' + ck.detail + '</div>';
+  });
+  html += '</div>';
+  if (hardFails > 0) html += '<div class="warning">Esta entrega falha ' + hardFails + ' check(s) duro(s). Por padrão ela não pode ser aprovada; se decidir aprovar, registre o motivo.</div>';
+  for (var name in e.output_files) {
+    html += '<h2 style="font-size:13px; margin-top:12px">' + name + '</h2>';
+    html += '<div class="output" id="out-' + name.replace(/\W/g, '-') + '">' + escapeHtml(e.output_files[name]).slice(0, 12000) + '</div>';
+  }
+  html += '<div class="crit-group">';
+  ['c1', 'c2', 'c3', 'c4', 'c5'].forEach(function (key) {
+    var crit = e.rubric && e.rubric.criteria[key];
+    html += '<div class="crit">';
+    html += '<label>' + key.toUpperCase() + ' · ' + (crit ? crit.name : '') + ' — nota <span id="val-' + key + '">3</span>/5</label>';
+    html += '<input type="range" id="' + key + '" min="0" max="5" step="1" value="3" oninput="updateAnchor(\'' + key + '\')">';
+    html += '<span class="anchor" id="anchor-' + key + '">' + anchorFor(e.rubric, key, 3) + '</span>';
+    html += '</div>';
+  });
+  html += '</div>';
+  html += '<div class="row"><label>Minutos até ficar publicável: <input type="number" id="minutes" min="0" step="0.5" value="15"></label>';
+  html += '<button class="secondary" id="use-timer">usar tempo decorrido</button></div>';
+  html += '<div class="approval"><label><input type="checkbox" id="approved"> aprovar entrega como publicável para o cliente</label>';
+  html += '<div class="hidden" id="override-row"><label style="font-weight:400">Motivo da exceção (obrigatório):</label><textarea id="override"></textarea></div></div>';
+  html += '<div class="row"><label>Anotações: <input type="text" id="notes" style="flex:1; min-width:240px" placeholder="observações rápidas"></label></div>';
+  html += '<div class="row"><button id="save">salvar avaliação</button><button class="secondary" id="skip">ver outra entrega</button></div>';
+  html += '</div>';
+  c.innerHTML = html;
+  $('approved').addEventListener('change', function () {
+    $('override-row').classList.toggle('hidden', !(this.checked && hardFails > 0));
+  });
+  $('save').addEventListener('click', function () {
+    var scores = {};
+    ['c1', 'c2', 'c3', 'c4', 'c5'].forEach(function (k) { scores[k] = Number($(k).value); });
+    var body = {
+      round_id: $('round').value,
+      blind_id: e.blind_id,
+      rater: state.rater,
+      scores: scores,
+      approved: $('approved').checked,
+      approved_override_reason: $('approved').checked && hardFails > 0 ? ($('override').value || null) : null,
+      minutes_to_publishable: $('minutes').value === '' ? null : Number($('minutes').value),
+      notes: $('notes').value
+    };
+    fetch('/api/rate', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body) })
+      .then(function (r) { return r.json().then(function (j) { return { code: r.status, j: j }; }); })
+      .then(function (res) {
+        if (res.code !== 200) { alert(res.j.error || 'erro ao salvar'); return; }
+        refreshStatus($('round').value);
+        if (res.j.status && res.j.status.rated >= res.j.status.total) { revealButton(); }
+        state.current++;
+        if (state.current >= state.entries.length) { render(); } else { render(); }
+      });
+  });
+  $('skip').addEventListener('click', function () {
+    state.current = (state.current + 1) % Math.max(1, state.entries.length);
+    render();
+  });
+  $('use-timer').addEventListener('click', function () {
+    var mins = (Date.now() - state.timerStart) / 60000;
+    $('minutes').value = (Math.round(mins * 10) / 10).toString();
+  });
+}
+
+function revealButton() {
+  var div = document.createElement('div');
+  div.className = 'card';
+  div.id = 'reveal';
+  var existing = document.getElementById('reveal');
+  if (existing) return;
+  var b = document.createElement('button');
+  b.textContent = 'rodada completa — revelar modelos';
+  b.addEventListener('click', function () {
+    fetch('/api/reveal?id=' + $('round').value).then(function (r) { return r.text(); }).then(function (t) {
+      var box = document.createElement('div');
+      box.className = 'output';
+      box.textContent = t;
+      document.getElementById('reveal').appendChild(box);
+    });
+  });
+  div.appendChild(b);
+  $('content').parentElement.insertBefore(div, $('content').nextSibling);
+}
+
+function updateAnchor(key) {
+  var e = state.entries[state.current];
+  var value = document.getElementById(key).value;
+  document.getElementById('val-' + key).textContent = value;
+  document.getElementById('anchor-' + key).textContent = anchorFor(e.rubric, key, Number(value));
+}
+
+function escapeHtml(s) {
+  return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+loadRounds();
+</script>
+</body>
+</html>

@@ -26,3 +26,8 @@
 - Biblioteca de 22 checks (duros e macios) registrada; arquivos de saída em formato código cercados antes dos checks textuais.
 - Fixtures completos: mock-good passa em todos os duros; mock-bad falha ao menos 1; mock-flaky falha 1 duro sutil (T12: 7/12 defeitos).
 - Testes: 24 passando (npm test). TAG: m3-done.
+
+## M4/M5 — concluídos
+- M4: round-new (pacotes manuais), round-ingest (cegamento, runs.jsonl, drift de lock, aviso de descegamento), adaptador http genérico (desabilitado por padrão), selftest R000 de ponta a ponta.
+- M5: rate.js (loopback 127.0.0.1:4173, UI pt-BR, política de check duro com override, revelação só com rodada completa), score.js (score ponderado, pass@1/@3, custo nulo quando incompleto, Δ por tarefa+versão), guide.js (docs/model-guide.md).
+- 39 testes passando.

@@ -8,3 +8,8 @@
 - tasks/T01–T12.yaml + tasks.lock.json
 - fixtures/mock-{good,bad,flaky}/T01–T12
 - correção: rubrics YAML com âncoras citadas; runChecks cerca arquivos de código; pwaStructural extrai blocos fenced (T12)
+## M4
+- scripts/round-new.js, round-ingest.js, selftest.js, adapters/http-generic.js
+## M5
+- scripts/lib/scorecore.js, scripts/lib/simulate.js, scripts/score.js, scripts/guide.js, scripts/rate.js + scripts/rater-ui.html
+- schemas/scoreboard.schema.json: removido format date-time (padrão regex no validate)

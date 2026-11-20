@@ -5,6 +5,7 @@ import { repoPath, sha256 } from './lib/util.js';
 import { validateAllTasks } from './lib/tasks.js';
 import { exitWith } from './lib/envelope.js';
 import { ingestRound } from './round-ingest.js';
+import { simulateRatings } from './lib/simulate.js';
 
 const SELFTEST_ROUND = 'R000-selftest';
 const MODELS = ['mock-good', 'mock-bad', 'mock-flaky'];
@@ -78,7 +79,11 @@ export function runSelftest() {
   if (result.status === 'error') {
     return { status: 'error', summary: `ingest falhou: ${result.summary}` };
   }
-  return { status: 'success', summary: `pipeline de ponta a ponta ok: ${result.summary}`, artifacts: result.artifacts };
+  const sim = simulateRatings(SELFTEST_ROUND);
+  if (sim.status === 'error') {
+    return { status: 'error', summary: `avaliações simuladas falharam: ${sim.summary}` };
+  }
+  return { status: 'success', summary: `pipeline de ponta a ponta ok: ${result.summary}; ${sim.summary}`, artifacts: [...(result.artifacts ?? []), ...sim.artifacts] };
 }
 
 export function main(args) {
