@@ -20,14 +20,17 @@ function runTests() {
   let out = '';
   let code = 0;
   try {
-    out = execFileSync('node', ['--test'], { encoding: 'utf8', cwd: repoPath() });
+    out = execFileSync('node', ['--test', '--test-concurrency=1'], { encoding: 'utf8', cwd: repoPath() });
   } catch (e) {
     out = `${e.stdout ?? ''}${e.stderr ?? ''}`;
     code = e.status ?? 1;
   }
   const m = out.match(/# fail (\d+)/);
   const failN = m ? Number(m[1]) : code === 0 ? 0 : -1;
-  if (failN !== 0) throw new Error(m ? `${failN} teste(s) falhando` : `runner sem resumo legível (exit ${code})`);
+  if (failN !== 0) {
+    const tail = m ? '' : `: ${out.replace(/\s+/g, ' ').trim().slice(-240)}`;
+    throw new Error(m ? `${failN} teste(s) falhando` : `runner sem resumo legível (exit ${code})${tail}`);
+  }
   return { status: 'success', summary: 'testes ok' };
 }
 

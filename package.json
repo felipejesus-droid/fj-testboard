@@ -6,7 +6,7 @@
   "private": true,
   "engines": { "node": ">=20" },
   "scripts": {
-    "test": "node --test",
+    "test": "node --test --test-concurrency=1",
     "check": "node scripts/cli.js check",
     "check:prompts": "node scripts/lock-prompts.js --verify",
     "guard": "node scripts/guard.js",

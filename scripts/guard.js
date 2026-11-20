@@ -9,7 +9,13 @@ const DATA_EXT = ['.yaml', '.yml', '.json'];
 const ALLOWED = 'internal';
 
 function walk(dir, problems) {
-  for (const entry of readdirSync(dir, { withFileTypes: true })) {
+  let entries;
+  try {
+    entries = readdirSync(dir, { withFileTypes: true });
+  } catch {
+    return;
+  }
+  for (const entry of entries) {
     const full = join(dir, entry.name);
     if (entry.isDirectory()) {
       walk(full, problems);
@@ -48,7 +54,13 @@ function checkPublicDir(root) {
   const stack = [pub];
   while (stack.length) {
     const cur = stack.pop();
-    for (const entry of readdirSync(cur, { withFileTypes: true })) {
+    let entries;
+    try {
+      entries = readdirSync(cur, { withFileTypes: true });
+    } catch {
+      continue;
+    }
+    for (const entry of entries) {
       const full = join(cur, entry.name);
       if (entry.isDirectory()) stack.push(full);
       else files.push(full);
