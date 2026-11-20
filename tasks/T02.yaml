@@ -1,0 +1,57 @@
+id: T02
+version: 1
+family: diagnostico
+category: A1
+persona_id: P1
+title: Análise de lacunas a partir de notas de entrevista bagunçadas
+frozen_prompt_pt: |
+  Você é consultor de transformação digital. A dona da **Pousada Céu de Pinhal** (Gramado, RS) conversou com você em tom de desabafo; abaixo está a transcrição crua das notas, com desencontro proposital de memórias dela.
+
+  <<<DADOS_CLIENTE>>>
+  {{INPUT_P1_NOTES}}
+  {{INPUT_P1_PERSONA}}
+  <<<FIM_DADOS>>>
+
+  Produza uma análise de lacunas digitais em português do Brasil, exatamente nas seções:
+
+  ## Fatos observados
+  Apenas afirmações diretamente rastreáveis às notas (cite o código da linha, ex.: L04).
+
+  ## Inferências
+  O que você acredita que está por trás dos fatos, rotulado como inferência.
+
+  ## Contradições
+  Desencontros entre falas da própria dona; cada contradição com as duas linhas de onde veio e uma hipótese que explique o desencontro.
+
+  ## Hipóteses e premissas
+  Tudo aquilo que você precisaria confirmar para não recomendar com informação falsa.
+
+  Regras: separar fato de inferência de forma estrita; não escolher um lado de uma contradição sem registrar isso como premissa; português do Brasil; nada de estatística sem fonte.
+input_files:
+  - cases/P1/interview_notes.md
+  - cases/P1/persona.yaml
+tools:
+  web_search: false
+  code_exec: false
+max_revisions: 1
+attempts_default: 1
+output_spec:
+  kind: markdown
+  files:
+    - relatorio.md
+checks:
+  hard:
+    - headings
+    - t02_contradictions
+    - no_mojibake
+    - no_placeholders
+  soft:
+    - no_duplicates
+    - no_english_leakage
+weights:
+  c1: 0.2
+  c2: 0.25
+  c3: 0.2
+  c4: 0.15
+  c5: 0.2
+visibility: internal

@@ -1,0 +1,57 @@
+id: T05
+version: 1
+family: capacitacao
+category: A3
+persona_id: P4
+title: Treinamento de IA de 3 horas para a liderança do escritório
+frozen_prompt_pt: |
+  Você é facilitador de capacitação em IA. O escritório **Duarte Meirelles Contabilidade** (Belo Horizonte, MG) quer capacitar a liderança (a sócia e a equipe sênior) em IA. Material:
+
+  <<<DADOS_CLIENTE>>>
+  {{INPUT_P4_PERSONA}}
+  {{INPUT_P4_NOTES}}
+  <<<FIM_DADOS>>>
+
+  Monte um treinamento em português do Brasil, duração total 3 horas, para gestores, com exatamente as seções:
+
+  ## Agenda
+  Blocos com duração e objetivo, somando 3 horas.
+  ## Objetivos de aprendizagem
+  ## Exercícios
+  Três exercícios práticos ("Exercício 1", "Exercício 2", "Exercício 3"), cada um ancorado em uma tarefa real do escritório, com ferramentas genéricas (nenhuma dependência de recurso pago específico).
+  ## Governança e proteção de dados
+  Cuidados obrigatórios ao colocar dado de cliente em ferramenta de IA. Explique em função do contexto do escritório, sem citar número de lei ou artigo específico.
+  ## Como medir o aprendizado
+  ## O que verificar
+  Uma seção final diz ao participante o que ele deve verificar por conta própria antes de confiar em qualquer saída de ferramenta de IA.
+
+  Regras: afirmações sobre recursos de ferramentas devem vir com data ("na data em que escrevi") ou ressalva ("confirme no seu plano"); nenhum artigo ou lei específica; português do Brasil.
+input_files:
+  - cases/P4/persona.yaml
+  - cases/P4/interview_notes.md
+tools:
+  web_search: true
+  code_exec: false
+max_revisions: 1
+attempts_default: 1
+output_spec:
+  kind: markdown
+  files:
+    - treinamento.md
+checks:
+  hard:
+    - headings
+    - t05_hedged_claims
+    - t05_exercises
+    - no_mojibake
+    - no_placeholders
+  soft:
+    - no_duplicates
+    - no_english_leakage
+weights:
+  c1: 0.2
+  c2: 0.2
+  c3: 0.2
+  c4: 0.2
+  c5: 0.2
+visibility: internal

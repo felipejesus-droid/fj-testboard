@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Checklist de Governança</title>
+<style>
+body { font-family: sans-serif; background: #f7f5ef; color: #1c2b3a; margin: 0; padding: 16px; }
+button { min-height: 44px; min-width: 44px; }
+li { padding: 8px 0; }
+</style>
+</head>
+<body>
+<h1>Checklist de Governança</h1>
+<p id="progresso">Conferências registradas: 0 de 0</p>
+<form id="form-tarefa">
+  <label for="quarto">Número do quarto</label>
+  <input type="text" id="quarto" name="quarto" placeholder="Ex.: 12">
+  <label for="observacao">Observação da camareira</label>
+  <input type="text" id="observacao" name="observacao" placeholder="Ex.: reposição completa">
+  <button type="button" id="btn-marcar" aria-label="Marcar quarto como limpo">Quarto limpo</button>
+</form>
+<ul id="lista-tarefas"></ul>
+<script>
+var chave = 'checklist-governanca-ceu-pinhal';
+var tarefas = JSON.parse(localStorage.getItem(chave) || '[]');
+
+function salvar() {
+  localStorage.setItem(chave, JSON.stringify(tarefas));
+}
+
+function render() {
+  var lista = document.getElementById('lista-tarefas');
+  lista.innerHTML = '';
+  var limpos = 0;
+  tarefas.forEach(function (tarefa, i) {
+    var li = document.createElement('li');
+    var caixa = document.createElement('input');
+    caixa.type = 'checkbox';
+    caixa.checked = tarefa.feito;
+    caixa.id = 'tarefa-' + i;
+    caixa.addEventListener('change', function () {
+      tarefas[i].feito = caixa.checked;
+      salvar();
+      render();
+    });
+    var rotulo = document.createElement('label');
+    rotulo.htmlFor = 'tarefa-' + i;
+    rotulo.textContent = tarefa.quarto + (tarefa.observacao ? ' — ' + tarefa.observacao : '');
+    li.appendChild(caixa);
+    li.appendChild(rotulo);
+    if (tarefa.feito) limpos++;
+    lista.appendChild(li);
+  });
+  document.getElementById('progresso').textContent = 'Conferências registradas: ' + limpos + ' de ' + tarefas.length;
+}
+
+document.getElementById('btn-marcar').addEventListener('click', function () {
+  var quarto = document.getElementById('quarto').value.trim();
+  if (!quarto) return;
+  tarefas.push({ quarto: quarto, observacao: document.getElementById('observacao').value.trim(), feito: true });
+  salvar();
+  render();
+});
+
+render();
+</script>
+</body>
+</html>

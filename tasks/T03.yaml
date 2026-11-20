@@ -1,0 +1,56 @@
+id: T03
+version: 1
+family: prd
+category: A2
+persona_id: P2
+title: PRD de aplicativo de lembrete para reduzir faltas na clínica
+frozen_prompt_pt: |
+  Você é gerente de produto. A **Clínica Movimento Vivo** (Curitiba, PR), de fisioterapia, quer reduzir o número de pacientes que faltam à consulta. Material de entrada:
+
+  <<<DADOS_CLIENTE>>>
+  {{INPUT_P2_PERSONA}}
+  {{INPUT_P2_NOTES}}
+  <<<FIM_DADOS>>>
+
+  Escreva um PRD em português do Brasil, linguagem plana, exatamente nas seções:
+
+  ## Problema
+  ## Usuários
+  ## Escopo
+  O que entra nesta versão e o que deliberadamente não entra (listas separadas).
+  ## Requisitos
+  Numere os requisitos (R1, R2...). Todo requisito precisa de um critério de aceitação verificável (CA1, CA2...), na seção de requisitos mesmo.
+  ## Medidas de sucesso
+  Com números de alvo e janela de tempo escolhidos por você e declarados como alvo, não como previsão.
+  ## Riscos
+  ## Questões abertas
+
+  Regras: nada de "rápido", "fácil" ou "simples" sem número que ancore a afirmação; nenhuma promessa de resultado; português do Brasil.
+input_files:
+  - cases/P2/persona.yaml
+  - cases/P2/interview_notes.md
+tools:
+  web_search: false
+  code_exec: false
+max_revisions: 1
+attempts_default: 1
+output_spec:
+  kind: markdown
+  files:
+    - prd.md
+checks:
+  hard:
+    - headings
+    - t03_acceptance
+    - no_mojibake
+    - no_placeholders
+  soft:
+    - no_duplicates
+    - no_english_leakage
+weights:
+  c1: 0.2
+  c2: 0.2
+  c3: 0.2
+  c4: 0.2
+  c5: 0.2
+visibility: internal

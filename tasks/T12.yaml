@@ -1,0 +1,52 @@
+id: T12
+version: 1
+family: pwa
+category: C
+persona_id: null
+title: Revisão de PWA defeituosa e aplicação das correções
+input_files:
+  - cases/shared/T12-flawed/index.html
+  - cases/shared/T12-flawed/manifest.webmanifest
+  - cases/shared/T12-flawed/sw.js
+tools:
+  web_search: false
+  code_exec: false
+max_revisions: 1
+attempts_default: 1
+frozen_prompt_pt: |
+  Você é desenvolvedor front-end revisando o trabalho de um colega. A pousada do caso anterior recebeu de um freelancer os três arquivos abaixo, e o resultado tem defeitos. Material de entrada:
+
+  <<<APLICATIVO_RECEBIDO>>>
+  {{INPUT_T12_INDEX}}
+  {{INPUT_T12_MANIFEST}}
+  {{INPUT_T12_SW}}
+  <<<FIM_APLICATIVO>>>
+
+  Tarefa, em português do Brasil:
+
+  ## Revisão
+  Liste os defeitos encontrados, priorizados do mais grave ao menos grave, cada um com: descrição do problema, categoria (funcional, offline/PWA, acessibilidade, segurança, padrão/idioma) e como reproduzir.
+
+  ## Correções
+  Devolva os três arquivos completos corrigidos, cada um dentro de um bloco de código delimitado, com o nome do arquivo na linha imediatamente acima do bloco (`index.html`, `manifest.webmanifest`, `sw.js`), mantendo o propósito do aplicativo (checklist de governança offline com estado salvo no aparelho, interface em pt-BR, sem dependência externa).
+output_spec:
+  kind: markdown
+  files:
+    - revisao.md
+checks:
+  hard:
+    - headings
+    - t12_detectors
+    - pwa_structural
+    - no_mojibake
+    - no_placeholders
+  soft:
+    - no_english_leakage
+    - no_fabricated_stats
+weights:
+  c1: 0.2
+  c2: 0.4
+  c3: 0.1
+  c4: 0.1
+  c5: 0.2
+visibility: internal

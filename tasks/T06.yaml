@@ -1,0 +1,53 @@
+id: T06
+version: 1
+family: capacitacao
+category: A3
+persona_id: P1
+title: Treinamento de IA de 90 minutos para a equipe da pousada
+frozen_prompt_pt: |
+  Você é facilitador de capacitação em IA. A **Pousada Céu de Pinhal** (Gramado, RS) quer capacitar a equipe de frente (recepção e governança) em ferramentas de IA. Material:
+
+  <<<DADOS_CLIENTE>>>
+  {{INPUT_P1_PERSONA}}
+  {{INPUT_P1_NOTES}}
+  <<<FIM_DADOS>>>
+
+  Monte um treinamento em português do Brasil, duração 90 minutos, linguagem simples para quem não é de tecnologia, com exatamente as seções:
+
+  ## Agenda
+  Blocos com duração e objetivo, somando 90 minutos.
+  ## Exercícios
+  Mínimo de três exercícios ("Exercício 1", "Exercício 2", "Exercício 3"), cada um ligado a uma rotina real de recepção ou de governança (ex.: montar a lista de quartos do dia, responder mensagens de hóspede, conferir itens de corte de cama).
+  ## O que verificar
+  Roteiro curto para a equipe conferir saídas de IA antes de mandar ao hóspede.
+
+  Regras: nenhuma preços ou recursos de produto afirmados com certeza (use ressalvas); frases curtas; português do Brasil natural.
+input_files:
+  - cases/P1/persona.yaml
+  - cases/P1/interview_notes.md
+tools:
+  web_search: false
+  code_exec: false
+max_revisions: 1
+attempts_default: 1
+output_spec:
+  kind: markdown
+  files:
+    - treinamento.md
+checks:
+  hard:
+    - headings
+    - t06_simple_language
+    - t05_exercises
+    - no_mojibake
+    - no_placeholders
+  soft:
+    - no_duplicates
+    - no_english_leakage
+weights:
+  c1: 0.2
+  c2: 0.15
+  c3: 0.2
+  c4: 0.25
+  c5: 0.2
+visibility: internal

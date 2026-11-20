@@ -1,0 +1,40 @@
+category: B1
+family: apresentacao
+name: Apresentação a partir de dados
+criteria:
+  c1:
+    name: Fez o que foi pedido?
+    anchors:
+      1: "Menos de 8 lâminas ou sem notas de apresentador / gráfico sugerido."
+      3: "8 lâminas com estrutura, mas alguma dados sem série indicada ou nota fraca."
+      5: "8 lâminas completas: título, mensagem-chave, conteúdo, notas de apresentador e tipo de gráfico com a série exata de dados."
+  c2:
+    name: Está correto e verdadeiro?
+    anchors:
+      1: "Números que não batem com os dados de entrada; inconsistência plantada apresentada como fato."
+      3: "Números batem, mas inconsistências dos dados não são sinalizadas onde deviam ser."
+      5: "Todo número rastreia aos dados (ou é derivado corretamente); inconsistentes são sinalizados, nunca usados como se fossem confiáveis."
+  c3:
+    name: É específico para este cliente?
+    anchors:
+      1: "Deck que serviria a qualquer empresa; meses e números não são os do caso."
+      3: "Usa os dados do caso, mas a história serve para qualquer negócio do segmento."
+      5: "A narrativa nasce do padrão dos dados deste cliente (meses, quedas, picos específicos)."
+  c4:
+    name: Está pronto para usar?
+    anchors:
+      1: "Lista de assuntos, não lâmina pronta."
+      3: "Dá para apresentar com ajuste nos textos das lâminas."
+      5: "Notas de apresentador redigidas para serem lidas em voz alta; deck pronto."
+  c5:
+    name: O português está natural e profissional?
+    anchors:
+      1: "Frases telegráficas quebradas ou anglicismos (\"insights\" soltos sem necessidade)."
+      3: "Correto, mas com repetição de fórmula entre lâminas."
+      5: "Português natural de apresentação oral brasileira, variado entre lâminas."
+red_flags:
+  - Número não presente nem derivável dos dados de entrada
+  - Gráfico sugerido sem a série de dados exata
+  - Inconsistência plantada tratada como número confiável
+  - Lâminas com texto corrido que ninguém consegue ler projetado
+visibility: internal

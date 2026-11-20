@@ -1,0 +1,56 @@
+id: T09
+version: 1
+family: social
+category: B2
+persona_id: P4
+title: Conteúdo de 30 dias para a contabilidade atrair clientes
+frozen_prompt_pt: |
+  Você é estrategista de conteúdo. **Duarte Meirelles Contabilidade** (Belo Horizonte, MG) quer usar conteúdo para atrair clientes de clínicas de saúde. Material:
+
+  <<<DADOS_CLIENTE>>>
+  {{INPUT_P4_PERSONA}}
+  {{INPUT_P4_NOTES}}
+  <<<FIM_DADOS>>>
+
+  Produza em português do Brasil, exatamente nestas seções:
+
+  ## Calendário de 30 dias
+  4 semanas ("Semana 1" a "Semana 4"), com 4 publicações por semana ("Dia 1" a "Dia 30"): dia, formato e tema em uma linha por publicação. 16 publicações no total.
+
+  ## Publicações completas
+  Seis peças totalmente escritas, prontas para copiar e publicar:
+  - "Post no LinkedIn 1" e "Post no LinkedIn 2": texto corrido com gancho e chamada para ação.
+  - "Carrossel 1" e "Carrossel 2": roteiro com 5 a 7 slides numerados.
+  - "Roteiro de vídeo 1" e "Roteiro de vídeo 2": script de até 60 segundos com falas e indicação de cena.
+  Cada peça identifica seu gancho ("Hook:") no início. Os ganchos precisam ser diferentes entre si. As chamadas para ação variam entre peças.
+
+  Regras: nenhuma garantia de resultado; nenhuma estatística sem fonte; nenhuma menção a método proprietário do escritório; português do Brasil natural de rede social.
+input_files:
+  - cases/P4/persona.yaml
+  - cases/P4/interview_notes.md
+tools:
+  web_search: false
+  code_exec: false
+max_revisions: 1
+attempts_default: 1
+output_spec:
+  kind: markdown
+  files:
+    - conteudo.md
+checks:
+  hard:
+    - headings
+    - t09_counts
+    - no_fabricated_stats
+    - no_mojibake
+    - no_placeholders
+  soft:
+    - hooks_similarity
+    - no_duplicates
+weights:
+  c1: 0.2
+  c2: 0.1
+  c3: 0.4
+  c4: 0.1
+  c5: 0.2
+visibility: internal

@@ -1,0 +1,57 @@
+id: T11
+version: 1
+family: pwa
+category: C
+persona_id: P1
+title: PWA offline de checklist da governança da pousada
+frozen_prompt_pt: |
+  Você é desenvolvedor front-end. A **Pousada Céu de Pinhal** (Gramado, RS) precisa de uma lista de conferência de governança que funcione no celular, sem internet, para as camareiras. Material:
+
+  <<<DADOS_CLIENTE>>>
+  {{INPUT_P1_PERSONA}}
+  {{INPUT_P1_NOTES}}
+  <<<FIM_DADOS>>>
+
+  Entregue em português do Brasil:
+
+  ### a) Escopo MVP
+  Uma página única com: quem usa, o trabalho central que o app resolve, o que é obrigatório (must), o que seria bom (should) e o que fica de fora (won't), e a medida de sucesso.
+
+  ### b) PWA funcional em 3 arquivos
+  Entregue três arquivos completos, prontos para publicar em uma pasta:
+  - `index.html`: lista de tarefas de governança com estado salvo no aparelho (localStorage), formulário para a camareira marcar quarto limpo; `lang="pt-BR"`; meta viewport; todo campo de formulário com `<label>`; nenhuma dependência externa (nenhuma CDN, nenhuma fonte remota).
+  - `manifest.webmanifest`: campos name, short_name, start_url, display (standalone) e icons.
+  - `sw.js`: service worker com handler de install e de fetch; lista de pré-cache cobrindo index.html e manifest.webmanifest.
+
+  Regras: microcopy em pt-BR natural de camareira; alvos de toque de no mínimo 44px; contraste de texto com razão de pelo menos 4,5:1; nada de preços; nenhum recurso que não funcione offline.
+input_files:
+  - cases/P1/persona.yaml
+  - cases/P1/interview_notes.md
+tools:
+  web_search: false
+  code_exec: true
+max_revisions: 1
+attempts_default: 1
+output_spec:
+  kind: web-multifile
+  files:
+    - escopo.md
+    - index.html
+    - manifest.webmanifest
+    - sw.js
+checks:
+  hard:
+    - pwa_structural
+    - headings
+    - no_mojibake
+    - no_placeholders
+  soft:
+    - no_english_leakage
+    - no_fabricated_stats
+weights:
+  c1: 0.2
+  c2: 0.25
+  c3: 0.2
+  c4: 0.15
+  c5: 0.2
+visibility: internal

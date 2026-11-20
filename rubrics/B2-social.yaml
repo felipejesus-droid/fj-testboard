@@ -1,0 +1,40 @@
+category: B2
+family: social
+name: Conteúdo para redes sociais
+criteria:
+  c1:
+    name: Fez o que foi pedido?
+    anchors:
+      1: "Falta o calendário ou os textos completos; formatos trocados."
+      3: "Calendário e textos existem, mas faltam peças ou formatos (ex.: 1 roteiro de vídeo em vez de 2)."
+      5: "Calendário completo na frequência pedida e todas as peças inteiras, nos formatos pedidos."
+  c2:
+    name: Está correto e verdadeiro?
+    anchors:
+      1: "Números ou resultados garantidos (\"dobrará suas vendas\"), estatística inventada."
+      3: "Sem inventar, mas com promessa implícita forte ou chamada repetida demais."
+      5: "Nenhuma promessa de resultado, nenhuma estatística sem fonte; chamadas variadas por peça."
+  c3:
+    name: É específico para este cliente?
+    anchors:
+      1: "Conteúdo que vale para qualquer profissão; troca o nome e a peça continua válida."
+      3: "Menciona o ramo, mas as dores dos posts não são as do caso."
+      5: "Cada peça nasce de dor, rotina ou fala do cliente do caso; impossível reciclar para outro ramo."
+  c4:
+    name: Está pronto para usar?
+    anchors:
+      1: "Ideias soltas em bullets, sem texto pronto."
+      3: "Textos esboçados; falta batida de publicação ou legenda."
+      5: "Texto completo, com hook, corpo e chamada; dia a dia pronto para copiar e publicar."
+  c5:
+    name: O português está natural e profissional?
+    anchors:
+      1: "Frases traduzidas, hooks idênticos com troca de palavra, emojis fora de tom."
+      3: "Natural, mas com hooks parecidos entre si ou tom oscilando."
+      5: "Tom da persona constante, hooks variados, português de rede social brasileiro de qualidade."
+red_flags:
+  - Hooks quase idênticos
+  - Chamada para ação repetida em todas as peças
+  - Promessa de resultado ou número sem fonte
+  - Conteúdo que serve a qualquer empresa
+visibility: internal

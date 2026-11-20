@@ -1,0 +1,52 @@
+id: T08
+version: 1
+family: apresentacao
+category: B1
+persona_id: P3
+title: Apresentação de 8 lâminas com CSV inconsistente
+frozen_prompt_pt: |
+  Você é analista de negócios. A indústria **Componentes Vulcano** (Joinville, SC) pediu uma apresentação de 8 lâminas a partir do resumo mensal de 2025. Dado de entrada:
+
+  <<<DADOS_CLIENTE>>>
+  {{INPUT_P3_PERSONA}}
+  {{INPUT_P3_KPIS}}
+  <<<FIM_DADOS>>>
+
+  Produza em português do Brasil um deck em markdown com EXATAMENTE 8 lâminas ("## Lâmina 1" a "## Lâmina 8"). Cada lâmina, nesta estrutura:
+
+  - **Título:** uma frase curta.
+  - **Mensagem-chave:** uma frase.
+  - **Conteúdo:** 3 a 5 bullets, no máximo 12 palavras por bullet.
+  - **Notas do apresentador:** 2 a 4 frases para leitura em voz alta.
+  - **Gráfico sugerido:** tipo de gráfico + a série de dados exata, mês a mês, copiada ou derivada corretamente das linhas mensais da planilha.
+
+  Regras estritas: todo número precisa vir das linhas mensais ou ser derivado corretamente delas (soma, média ou variação percentual). Antes de apresentar qualquer número agregado, verifique se ele bate com a soma dos meses; se não bater, sinalize o problema ao cliente na própria lâmina, com a diferença, e siga apenas com os números mensais confiáveis. Não apresente número inconsistente como se fosse verdade.
+input_files:
+  - cases/P3/persona.yaml
+  - cases/P3/kpis.csv
+tools:
+  web_search: false
+  code_exec: true
+max_revisions: 1
+attempts_default: 1
+output_spec:
+  kind: markdown
+  files:
+    - deck.md
+checks:
+  hard:
+    - numbers_traceable
+    - t08_flag
+    - t07_slides
+    - no_mojibake
+    - no_placeholders
+  soft:
+    - no_duplicates
+    - no_fabricated_stats
+weights:
+  c1: 0.2
+  c2: 0.4
+  c3: 0.1
+  c4: 0.1
+  c5: 0.2
+visibility: internal

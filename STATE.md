@@ -20,3 +20,9 @@
 | U1.6 | Lowest | n/d | 0 | 10 min | sim |
 | M2 personas/KPIs/notas | Mid | n/d | 2 (escapes yaml/json) | 40 min | sim |
 | M2 armadilhas + evals | Highest | n/d | 1 (multiline regex) | 15 min | sim |
+
+## M3 — concluído
+- 12 cartões de tarefa (T01–T12) validados; prompts congelados em pt-BR bloqueados por sha256 em tasks.lock.json.
+- Biblioteca de 22 checks (duros e macios) registrada; arquivos de saída em formato código cercados antes dos checks textuais.
+- Fixtures completos: mock-good passa em todos os duros; mock-bad falha ao menos 1; mock-flaky falha 1 duro sutil (T12: 7/12 defeitos).
+- Testes: 24 passando (npm test). TAG: m3-done.

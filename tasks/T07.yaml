@@ -1,0 +1,51 @@
+id: T07
+version: 1
+family: apresentacao
+category: B1
+persona_id: P2
+title: Apresentação de 8 lâminas a partir dos KPIs da clínica
+frozen_prompt_pt: |
+  Você é analista de negócios. A **Clínica Movimento Vivo** (Curitiba, PR) pediu uma apresentação de 8 lâminas a partir das suas planilha mensal de 2025. Dado de entrada:
+
+  <<<DADOS_CLIENTE>>>
+  {{INPUT_P2_PERSONA}}
+  {{INPUT_P2_KPIS}}
+  <<<FIM_DADOS>>>
+
+  Produza em português do Brasil um deck em markdown com EXATAMENTE 8 lâminas ("## Lâmina 1" a "## Lâmina 8"). Cada lâmina, nesta estrutura:
+
+  - **Título:** uma frase curta.
+  - **Mensagem-chave:** uma frase que a lâmina deve comunicar.
+  - **Conteúdo:** 3 a 5 bullets, cada um com no máximo 12 palavras.
+  - **Notas do apresentador:** 2 a 4 frases escritas para serem lidas em voz alta.
+  - **Gráfico sugerido:** tipo de gráfico + a série de dados exata (valores mês a mês copiados ou derivados corretamente da planilha de entrada).
+
+  Regras estritas: todo número que aparecer precisa estar presente na planilha de entrada ou ser derivado corretamente dela (soma, média ou variação percentual). Nenhum número de fora. Se você notar qualquer inconsistência nos dados, sinalize; não invente valor para tapar buraco. A lâmina 8 precisa fechar com recomendações práticas para os próximos 90 dias.
+input_files:
+  - cases/P2/persona.yaml
+  - cases/P2/kpis.csv
+tools:
+  web_search: false
+  code_exec: true
+max_revisions: 1
+attempts_default: 1
+output_spec:
+  kind: markdown
+  files:
+    - deck.md
+checks:
+  hard:
+    - numbers_traceable
+    - t07_slides
+    - no_mojibake
+    - no_placeholders
+  soft:
+    - no_duplicates
+    - t07_bullets_leanness
+weights:
+  c1: 0.2
+  c2: 0.4
+  c3: 0.1
+  c4: 0.1
+  c5: 0.2
+visibility: internal

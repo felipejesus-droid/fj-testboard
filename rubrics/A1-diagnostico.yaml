@@ -1,0 +1,40 @@
+category: A1
+family: diagnostico
+name: Framework de diagnóstico e análise de lacunas
+criteria:
+  c1:
+    name: Fez o que foi pedido?
+    anchors:
+      1: "Entrega parcial ou atropelada. Seções do formato pedido faltam (dimensões, escala, sequência de 90 dias) ou o modelo respondeu outra coisa."
+      3: "A maioria das seções pedidas existe, mas pelo menos uma está rasa ou sem o número exato de itens (ex.: 4 dimensões em vez de 5, sem matriz de lacunas)."
+      5: "Todas as seções existem com os números exatos pedidos. Escala com âncoras escritas por nível, matriz de lacunas e sequência de 90 dias completas."
+  c2:
+    name: Está correto e verdadeiro?
+    anchors:
+      1: "Premissas invertem fatos do caso. Contradições das notas são repetidas como verdade ou ignoradas de vez."
+      3: "Leitura dos fatos é aceitável, mas deixa de sinalizar pelo menos uma contradição ou inferiorização de inferência (apresenta hipótese como fato)."
+      5: "Separa fato de hipótese, aponta as contradições plantadas e escancara premissas antes de recomendar."
+  c3:
+    name: É específico para este cliente?
+    anchors:
+      1: "Texto genérico, servível para qualquer negócio; nenhum dado do caso aparece."
+      3: "Cita o cliente e alguns dados, mas as recomendações ainda servem para qualquer empresa do ramo."
+      5: "Recomendações só fazem sentido para esta empresa: cita fatos, números e rotina específicos da persona."
+  c4:
+    name: Está pronto para usar?
+    anchors:
+      1: "Esboço; o cliente precisaria refazer grande parte."
+      3: "Utilizável com retoques: falta priorizar, ancorar escala ou amarrar prazos."
+      5: "Entregável direto ao cliente: formatado, priorizado e com próximos passos claros."
+  c5:
+    name: O português está natural e profissional?
+    anchors:
+      1: "Traduções literais, anglicismos, frases truncadas ou texto repetido com troca de palavras."
+      3: "Português correto mas com trechos genéricos ou repetidos, transições fracas."
+      5: "Português brasileiro natural, sem repetição, sem anglicismo, adequado ao tom do cliente."
+red_flags:
+  - Blocos repetidos com troca pequena de palavra
+  - Dados do caso invertidos ou omitidos
+  - Hipóteses apresentadas como fatos
+  - Caracteres corrompidos ou placeholders não resolvidos
+visibility: internal

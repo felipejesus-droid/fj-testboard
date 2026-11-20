@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Housekeeping Checklist</title>
+</head>
+<body>
+<h1>Housekeeping Checklist</h1>
+<form id="task-form">
+  <input type="text" id="room" placeholder="Room number">
+  <input type="text" id="guest" placeholder="Guest name">
+  <button type="button" id="add-btn">+</button>
+</form>
+<ul id="task-list"></ul>
+<script>
+var tasks = [];
+function render() {
+  var list = document.getElementById('task-list');
+  var html = '';
+  for (var i = 0; i < tasks.length; i++) {
+    html += '<li>' + tasks[i].guest + '</li>';
+  }
+  list.innerHTML = html;
+}
+render();
+</script>
+</body>
+</html>

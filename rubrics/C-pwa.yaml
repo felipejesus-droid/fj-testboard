@@ -1,0 +1,40 @@
+category: C
+family: pwa
+name: Ideação e execução de PWA (escopo MVP + aplicativo offline)
+criteria:
+  c1:
+    name: Fez o que foi pedido?
+    anchors:
+      1: "Falta o escopo ou os arquivos; app não funciona offline."
+      3: "Escopo e arquivos existem, mas faltam campos do manifest, handler de fetch ou estado local."
+      5: "Escopo MVP de uma página e os três arquivos completos, com manifest válido, service worker com install/fetch/ state local e checklist funcional íntegro."
+  c2:
+    name: Está correto e verdadeiro?
+    anchors:
+      1: "Erros de sintaxe, service worker que quebra a página, dados nunca persistidos."
+      3: "Funciona, mas com descuido: cache que não cobre asset, campos faltando no manifest."
+      5: "App abre offline, salva o estado localmente e todos os artefatos cobertos pelo cache."
+  c3:
+    name: É específico para este cliente?
+    anchors:
+      1: "Checklist genérico de tarefas; nada conectado à rotina da casa."
+      3: "Cita quartos, mas as microcopies e os campos não conversam com a rotina da governança."
+      5: "Campos, texto e fluxo seguem a rotina real da casa (turnos, numeração de quartos, destinatários)."
+  c4:
+    name: Está pronto para usar?
+    anchors:
+      1: "Página sem interação real."
+      3: "Interação funciona, mas com detail visual ou label faltando."
+      5: "Interface utilizável no celular: labels, contraste declarado, alvo de toque adequado, texto em pt-BR correto."
+  c5:
+    name: O português está natural e profissional?
+    anchors:
+      1: "Microcopy em inglês ou tradução literal (\"hospedeira\" e outros tropeços graves)."
+      3: "Correto, mas com inconsistência de tom entre telas."
+      5: "Microcopy em pt-BR natural, curto e humano, coerente com o tom da marca."
+red_flags:
+  - Dependência externa (CDN, fonte remota) que derruba o offline
+  - Manifest incompleto ou service worker sem fetch
+  - Campos sem label ou contraste ilegível
+  - Microcopy machucado de tradução
+visibility: internal

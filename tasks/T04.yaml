@@ -1,0 +1,57 @@
+id: T04
+version: 1
+family: prd
+category: A2
+persona_id: P3
+title: "PRD endurecido - brief de cotação com contradições"
+frozen_prompt_pt: |
+  Você é gerente de produto. A indústria **Componentes Vulcano** (Joinville, SC) quer acelerar a cotação de peças. Você recebeu o brief do dono e as notas de entrevista — eles NÃO batem entre si em alguns pontos.
+
+  <<<DADOS_CLIENTE>>>
+  {{INPUT_P3_BRIEF}}
+  {{INPUT_P3_NOTES}}
+  {{INPUT_P3_PERSONA}}
+  <<<FIM_DADOS>>>
+
+  Escreva um PRD em português do Brasil com exatamente as seções:
+
+  ## Problema
+  ## Usuários
+  ## Escopo
+  ## Requisitos
+  Numere (R1, R2...); todo requisito com critério de aceitação (CA1, CA2...).
+  ## Premissas
+  Toda pressuposição que você precisou assumir, explicitada.
+  ## Questões abertas
+  Inclua aqui os desencontros entre brief e notas que você identificou, com trecho de origem de cada lado. Não escolha um lado silenciosamente.
+
+  Regras: português do Brasil; sem "rápido"/"fácil" sem número; nenhuma promessa de resultado.
+input_files:
+  - cases/P3/cotation-brief.md
+  - cases/P3/interview_notes.md
+  - cases/P3/persona.yaml
+tools:
+  web_search: false
+  code_exec: false
+max_revisions: 1
+attempts_default: 1
+output_spec:
+  kind: markdown
+  files:
+    - prd.md
+checks:
+  hard:
+    - headings
+    - t04_surfaced
+    - no_mojibake
+    - no_placeholders
+  soft:
+    - no_duplicates
+    - no_english_leakage
+weights:
+  c1: 0.2
+  c2: 0.25
+  c3: 0.2
+  c4: 0.15
+  c5: 0.2
+visibility: internal

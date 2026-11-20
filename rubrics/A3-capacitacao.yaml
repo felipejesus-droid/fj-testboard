@@ -1,0 +1,40 @@
+category: A3
+family: capacitacao
+name: Treinamento de alfabetização em IA
+criteria:
+  c1:
+    name: Fez o que foi pedido?
+    anchors:
+      1: "Agenda ou esboço solto; faltam exercícios mão na massa, medição de aprendizado ou duração pedida."
+      3: "Estrutura completa, mas algun exercício sem passo a passo ou sem tempo estimado."
+      5: "Agenda, objetivos, conteúdo, exercícios práticos, governança, medição e seção de verificação completos na duração pedida."
+  c2:
+    name: Está correto e verdadeiro?
+    anchors:
+      1: "Cita artigos de lei inventados, recursos de produto inexistentes ou preços sem fonte."
+      3: "Sem invenção grave, mas afirmações sobre ferramentas sem data ou ressalva."
+      5: "Afirmações sobre ferramentas com data ou ressalva explícita (\"confira no seu plano atual\"), nenhum inventado."
+  c3:
+    name: É específico para este cliente?
+    anchors:
+      1: "Exercícios que serviriam para qualquer público; nada liga ao rotina da empresa."
+      3: "Cita o negócio no exemplo, mas exercícios continuam genéricos."
+      5: "Cada exercício nasce de uma tarefa real do público (recepção, governança, agenda, matrícula)."
+  c4:
+    name: Está pronto para usar?
+    anchors:
+      1: "Roteiro de tópicos, não treinamento."
+      3: "Dá para ministrar com preparo extra; faltam materiais ou instruções do facilitador."
+      5: "Facilitador consegue conduzir só com o documento, com tempo, material e instrução por exercício."
+  c5:
+    name: O português está natural e profissional?
+    anchors:
+      1: "\"Treinamento\" escrito como tradução literal, frases em inglês, tom robótico."
+      3: "Correto mas formal demais para o público ou com repetição."
+      5: "Tom adequado ao público (gestores ou equipe de frente), linguagem simples quando pedida."
+red_flags:
+  - Artigos de lei ou números de norma inventados
+  - Recursos de produto descritos com certeza sem ressalva
+  - Exemplos sem nenhuma ligação com a rotina do cliente
+  - Palavras difíceis para público de frente de loja/ recepção
+visibility: internal

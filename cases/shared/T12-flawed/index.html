@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Housekeeping Checklist</title>
+</head>
+<body>
+<h1>Housekeeping Checklist</h1>
+<p id="progress">Completed: 0/0</p>
+<form id="task-form">
+  <input type="text" id="room" placeholder="Room number">
+  <input type="text" id="guest" placeholder="Guest name">
+  <button type="button" id="add-btn"><span>+</span></button>
+</form>
+<ul id="task-list"></ul>
+<script>
+var tasks = [];
+function render() {
+  var list = document.getElementById('task-list');
+  var done = 0;
+  for (var i = 0; i < tasks.length; i++) {
+    if (tasks[i].done) done++;
+    list.innerHTML += '<li style="color:#cccccc">' + tasks[i].guest + ' - Room ' + tasks[i].room +
+      ' <input type="checkbox" data-i="' + i + '"' + (done ? '' : '') + '></li>';
+  }
+  document.getElementById('progress').textContent = 'Completed: ' + done + '/' + tasks.length;
+}
+render();
+</script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+id: T10
+version: 1
+family: social
+category: B2
+persona_id: P2
+title: Conteúdo de 30 dias para a clínica, com comunicação de saúde responsável
+frozen_prompt_pt: |
+  Você é estrategista de conteúdo. A **Clínica Movimento Vivo** (Curitiba, PR), de fisioterapia, quer conteúdo que atraia pacientes sem escorregar para promessa de saúde. Material:
+
+  <<<DADOS_CLIENTE>>>
+  {{INPUT_P2_PERSONA}}
+  {{INPUT_P2_NOTES}}
+  <<<FIM_DADOS>>>
+
+  Produza em português do Brasil, exatamente nestas seções:
+
+  ## Calendário de 30 dias
+  4 semanas ("Semana 1" a "Semana 4"), 4 publicações por semana ("Dia 1" a "Dia 30"), começando em 1 de fevereiro de 2027 (uma segunda-feira). Uma linha por publicação: dia, formato e tema.
+
+  ## Publicações completas
+  Seis peças totalmente escritas:
+  - "Post no LinkedIn 1" e "Post no LinkedIn 2".
+  - "Carrossel 1" e "Carrossel 2": roteiro com 5 a 7 slides numerados.
+  - "Roteiro de vídeo 1" e "Roteiro de vídeo 2": script de até 60 segundos.
+  Cada peça com "Hook:" no início e ganchos diferentes entre si. Uma das peças responde a uma objeção real de paciente (ex.: "fisioterapia demora demais para mostrar resultado").
+
+  Regras de comunicação em saúde: nada de promessa de cura; nada antes e depois; nenhum resultado garantido; onde citar qualquer dado de saúde, use ressalva de que orientação individual depende de avaliação. Datas citadas precisam cair no dia da semana correto (1/2/2027 é segunda-feira).
+input_files:
+  - cases/P2/persona.yaml
+  - cases/P2/interview_notes.md
+tools:
+  web_search: false
+  code_exec: false
+max_revisions: 1
+attempts_default: 1
+output_spec:
+  kind: markdown
+  files:
+    - conteudo.md
+checks:
+  hard:
+    - headings
+    - t10_counts_restraint
+    - no_fabricated_stats
+    - no_mojibake
+    - no_placeholders
+  soft:
+    - hooks_similarity
+    - no_duplicates
+weights:
+  c1: 0.2
+  c2: 0.1
+  c3: 0.4
+  c4: 0.1
+  c5: 0.2
+visibility: internal

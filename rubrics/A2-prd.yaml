@@ -1,0 +1,40 @@
+category: A2
+family: prd
+name: Documento de requisitos de produto (PRD)
+criteria:
+  c1:
+    name: Fez o que foi pedido?
+    anchors:
+      1: "PRD não tem as seções pedidas ou vira descrição de solução pronta sem requisitos."
+      3: "Todas as seções grandes existem, mas algum requisito fica sem critério de aceitação ou escopo entra/sai confuso."
+      5: "Problema, usuários, escopo, requisitos (todos com critério de aceitação), medidas de sucesso, riscos e questões abertas completos."
+  c2:
+    name: Está correto e verdadeiro?
+    anchors:
+      1: "Ignora ou normaliza as contradições do material de entrada; promete efeitos sem base."
+      3: "Coerente com os dados, mas deixa passar pelo menos uma contradição relevante do brief sem bandeira."
+      5: "Traz cada contradição relevante a premissas ou questões abertas, sem escolher lado às escondidas."
+  c3:
+    name: É específico para este cliente?
+    anchors:
+      1: "Requisitos que servem para qualquer produto de agenda lembrete genérico."
+      3: "Cita o segmento, mas requisitos e medidas de sucesso seriam iguais em qualquer clínica."
+      5: "Requisitos amarrados aos números e à rotina da clínica (agenda, faltas, horários ociosos específicos)."
+  c4:
+    name: Está pronto para usar?
+    anchors:
+      1: "Rascunho sem priorização, impossível aprovar em reunião."
+      3: "Utilizável, mas com requisitos agrupados sem prioridade ou riscos vagos."
+      5: "Equipê de desenvolvimento poderia começar pelos itens priorizados sem nova reunião de alinhamento."
+  c5:
+    name: O português está natural e profissional?
+    anchors:
+      1: "Jargão técnico em inglês, gerúndio estranho, frases quebradas."
+      3: "Correto, mas com frases longas sem necessidade ou repetição de estruturas idênticas."
+      5: "Linguagem plana e profissional, como o pedido, sem repetição nem anglicismo."
+red_flags:
+  - Requisito sem critério de aceitação
+  - Palavras vagas tipo "rápido" ou "fácil" sem número
+  - Contradição do brief escolhida às escondidas
+  - Escopo sem limite (lista crescente de "também poderia")
+visibility: internal

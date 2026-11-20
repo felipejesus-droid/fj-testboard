@@ -1,0 +1,62 @@
+id: T01
+version: 1
+family: diagnostico
+category: A1
+persona_id: P4
+title: Framework de diagnóstico de maturidade digital para escritório de contabilidade
+frozen_prompt_pt: |
+  Você é consultor de transformação digital contratado pelo escritório **Duarte Meirelles Contabilidade** (Belo Horizonte, MG), microempresa do ramo contábil atendida pela sócia Gisela.
+
+  Material do cliente (abaixo, entre marcadores):
+  <<<DADOS_CLIENTE>>>
+  {{INPUT_P4_PERSONA}}
+  {{INPUT_P4_NOTES}}
+  <<<FIM_DADOS>>>
+
+  Construa um framework diagnóstico de maturidade digital e de IA para este escritório, para ser aplicado em uma conversa de 90 minutos com a sócia. Formato de saída, em português do Brasil, exatamente nas seções abaixo e nesta ordem:
+
+  ## Dimensões de avaliação
+  Pelo menos 5 dimensões nomeadas (use "Dimensão 1", "Dimensão 2"...), cada uma com 3 a 5 perguntas de diagnóstico escritas para o dono responder.
+
+  ## Escala 0 a 5
+  Escala de pontuação 0–5 com âncoras escritas para os níveis (o que significa pontuar baixo, médio e alto em cada nível de leitura), aplicável às dimensões acima.
+
+  ## Matriz de lacunas
+  Tabela ligando cada dimensão ao estágio atual provável do escritório e à lacuna principal, com base nos dados do cliente.
+
+  ## Oportunidades prioritárias
+  Exatamente 3 oportunidades ("Oportunidade 1", "Oportunidade 2", "Oportunidade 3"), cada uma com esforço × retorno estimado qualitativamente (baixo/médio/alto) e justificativa ancorada nos dados do cliente.
+
+  ## Sequência de 90 dias
+  Plano de 90 dias com responsável e critério de conclusão por etapa.
+
+  Regras: todo o texto em português do Brasil; nenhuma estatística sem fonte; nenhum dado de cliente real; não presuma ferramentas que não estão nos dados de entrada.
+input_files:
+  - cases/P4/persona.yaml
+  - cases/P4/interview_notes.md
+tools:
+  web_search: false
+  code_exec: false
+max_revisions: 1
+attempts_default: 1
+output_spec:
+  kind: markdown
+  files:
+    - relatorio.md
+checks:
+  hard:
+    - headings
+    - t01_dimensions
+    - no_duplicates
+    - no_mojibake
+    - no_placeholders
+  soft:
+    - no_english_leakage
+    - no_fabricated_stats
+weights:
+  c1: 0.2
+  c2: 0.2
+  c3: 0.2
+  c4: 0.2
+  c5: 0.2
+visibility: internal
