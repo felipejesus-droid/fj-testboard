@@ -13,3 +13,8 @@
 ## M5
 - scripts/lib/scorecore.js, scripts/lib/simulate.js, scripts/score.js, scripts/guide.js, scripts/rate.js + scripts/rater-ui.html
 - schemas/scoreboard.schema.json: removido format date-time (padrão regex no validate)
+## M6
+- scripts/dashboard.js + dashboard/index.html (offline, file://, selftest oculto por padrão)
+- scripts/verify.js (schemas, testes, guard, lock, selftest, invariante R000, guia, painel)
+- README.md (manual de operação em pt-BR), docs/PHASE2-public.md (esboço)
+- rounds/ fora do git (dados operacionais)

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Painel — FJ-TestBoard</title>
+<style>
+:root { --ink: #0A1628; --accent: #00D4FF; --gold: #DCAF3C; --paper: #f7f5ef; --muted: #5a6b7d; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: "Syne", "DM Sans", "Segoe UI", system-ui, sans-serif; }
+header { background: var(--ink); color: #fff; padding: 14px 20px; display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+header h1 { font-size: 18px; margin: 0; }
+.badge { background: var(--gold); color: var(--ink); font-size: 11px; padding: 3px 8px; border-radius: 12px; letter-spacing: .06em; }
+header select { padding: 6px 10px; border-radius: 8px; border: 1px solid var(--accent); font-family: inherit; }
+main { max-width: 980px; margin: 0 auto; padding: 20px; }
+.card { background: #fff; border: 1px solid #e3ded2; border-radius: 14px; padding: 18px 20px; margin-bottom: 18px; }
+h2 { margin: 0 0 10px; font-size: 15px; }
+table { border-collapse: collapse; width: 100%; font-size: 13px; }
+th, td { padding: 7px 9px; border-bottom: 1px solid #eee2cc; text-align: left; }
+td.num { text-align: right; font-family: "DM Mono", ui-monospace, Consolas, monospace; }
+.cell { text-align: center; font-family: "DM Mono", ui-monospace, Consolas, monospace; }
+.s-warning { background: #fdf3d7; border: 1px solid var(--gold); padding: 10px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+.how { color: var(--muted); font-size: 12px; line-height: 1.5; }
+footer { color: var(--muted); font-size: 11px; text-align: center; padding: 18px; }
+.arrow-up { color: #1d7a3e; font-weight: 700; }
+.arrow-down { color: #b1122e; font-weight: 700; }
+.hidden { display: none; }
+label.toggle { font-size: 12px; color: var(--muted); }
+</style>
+</head>
+<body>
+<header>
+  <h1>FJ-TestBoard</h1>
+  <span class="badge">FJ-TestBoard · INTERNO</span>
+  <select id="round"></select>
+  <label class="toggle"><input type="checkbox" id="show-synthetic"> ‡ mostrar rodada sintética (R000-selftest)</label>
+</header>
+<main>
+  <div id="content"></div>
+  <div class="card">
+    <h2>Como ler este painel</h2>
+    <div class="how">
+      <p><b>S</b> = score ponderado pela rubrica da tarefa (0 a 5). Cada célula é a média das entregas do modelo naquela categoria.</p>
+      <p><b>Aprov. %</b> = parte das entregas liberadas para o cliente. <b>pass@1</b> = aprovada já na primeira tentativa; <b>pass@3</b> só existe com ao menos 3 entregas.</p>
+      <p><b>Min</b> = mediana de minutos até a entrega ficar publicável. <b>Custo/aprov.</b> fica vazio quando falta custo em qualquer entrega aprovada do grupo.</p>
+      <p><b>Δ</b> compara com a rodada anterior apenas tarefa+versão repetidas; a seta mostra direção, não significância.</p>
+      <p>Amostra pequena e parte subjetiva: não trate diferenças de poucos décimos como verdade.</p>
+    </div>
+  </div>
+</main>
+<footer>FJ-TestBoard v0.1 · dados internos da FJ Smart · funciona offline (file://)</footer>
+<script>
+var DATA = {"rounds":[{"round_id":"R000-selftest","generated_at":"2026-11-20T12:53:22.164Z","deliveries":[{"blind_id":"065c6e","model":"mock-good","task_id":"T01","task_version":1,"category":"A1","attempt":1,"score":4.8,"approved":true,"minutes":12,"cost_brl":null,"hard_fails":0},{"blind_id":"b49fed","model":"mock-good","task_id":"T02","task_version":1,"category":"A1","attempt":1,"score":4.85,"approved":true,"minutes":12,"cost_brl":null,"hard_fails":0},{"blind_id":"720100","model":"mock-good","task_id":"T03","task_version":1,"category":"A2","attempt":1,"score":4.8,"approved":true,"minutes":12,"cost_brl":null,"hard_fails":0},{"blind_id":"a745f2","model":"mock-good","task_id":"T04","task_version":1,"category":"A2","attempt":1,"score":4.85,"approved":true,"minutes":12,"cost_brl":null,"hard_fails":0},{"blind_id":"b0581c","model":"mock-good","task_id":"T05","task_version":1,"category":"A3","attempt":1,"score":4.8,"approved":true,"minutes":12,"cost_brl":null,"hard_fails":0},{"blind_id":"57240c","model":"mock-good","task_id":"T06","task_version":1,"category":"A3","attempt":1,"score":4.75,"approved":true,"minutes":12,"cost_brl":null,"hard_fails":0},{"blind_id":"587992","model":"mock-good","task_id":"T07","task_version":1,"category":"B1","attempt":1,"score":4.9,"approved":true,"minutes":12,"cost_brl":null,"hard_fails":0},{"blind_id":"1c1b1c","model":"mock-good","task_id":"T08","task_version":1,"category":"B1","attempt":1,"score":4.9,"approved":true,"minutes":12,"cost_brl":null,"hard_fails":0},{"blind_id":"9ac3e3","model":"mock-good","task_id":"T09","task_version":1,"category":"B2","attempt":1,"score":4.9,"approved":true,"minutes":12,"cost_brl":null,"hard_fails":0},{"blind_id":"7a7efb","model":"mock-good","task_id":"T10","task_version":1,"category":"B2","attempt":1,"score":4.9,"approved":true,"minutes":12,"cost_brl":null,"hard_fails":0},{"blind_id":"d6ed8e","model":"mock-good","task_id":"T11","task_version":1,"category":"C","attempt":1,"score":4.85,"approved":true,"minutes":12,"cost_brl":null,"hard_fails":0},{"blind_id":"06ef61","model":"mock-good","task_id":"T12","task_version":1,"category":"C","attempt":1,"score":4.9,"approved":true,"minutes":12,"cost_brl":null,"hard_fails":0},{"blind_id":"855a0f","model":"mock-bad","task_id":"T01","task_version":1,"category":"A1","attempt":1,"score":1.6,"approved":false,"minutes":65,"cost_brl":null,"hard_fails":2},{"blind_id":"5a37c4","model":"mock-bad","task_id":"T02","task_version":1,"category":"A1","attempt":1,"score":1.65,"approved":false,"minutes":65,"cost_brl":null,"hard_fails":2},{"blind_id":"cadb7c","model":"mock-bad","task_id":"T03","task_version":1,"category":"A2","attempt":1,"score":1.6,"approved":false,"minutes":65,"cost_brl":null,"hard_fails":1},{"blind_id":"10f638","model":"mock-bad","task_id":"T04","task_version":1,"category":"A2","attempt":1,"score":1.65,"approved":false,"minutes":65,"cost_brl":null,"hard_fails":1},{"blind_id":"09c438","model":"mock-bad","task_id":"T05","task_version":1,"category":"A3","attempt":1,"score":1.6,"approved":false,"minutes":65,"cost_brl":null,"hard_fails":2},{"blind_id":"0c5181","model":"mock-bad","task_id":"T06","task_version":1,"category":"A3","attempt":1,"score":1.55,"approved":false,"minutes":65,"cost_brl":null,"hard_fails":2},{"blind_id":"cf8c91","model":"mock-bad","task_id":"T07","task_version":1,"category":"B1","attempt":1,"score":1.8,"approved":false,"minutes":65,"cost_brl":null,"hard_fails":2},{"blind_id":"0a474a","model":"mock-bad","task_id":"T08","task_version":1,"category":"B1","attempt":1,"score":1.8,"approved":false,"minutes":65,"cost_brl":null,"hard_fails":2},{"blind_id":"2144da","model":"mock-bad","task_id":"T09","task_version":1,"category":"B2","attempt":1,"score":1.5,"approved":false,"minutes":65,"cost_brl":null,"hard_fails":2},{"blind_id":"7286b9","model":"mock-bad","task_id":"T10","task_version":1,"category":"B2","attempt":1,"score":1.5,"approved":false,"minutes":65,"cost_brl":null,"hard_fails":2},{"blind_id":"c4c2bb","model":"mock-bad","task_id":"T11","task_version":1,"category":"C","attempt":1,"score":1.65,"approved":false,"minutes":65,"cost_brl":null,"hard_fails":1},{"blind_id":"27df60","model":"mock-bad","task_id":"T12","task_version":1,"category":"C","attempt":1,"score":1.8,"approved":false,"minutes":65,"cost_brl":null,"hard_fails":2},{"blind_id":"dea323","model":"mock-flaky","task_id":"T01","task_version":1,"category":"A1","attempt":1,"score":3.6,"approved":true,"minutes":31,"cost_brl":null,"hard_fails":0},{"blind_id":"bb506b","model":"mock-flaky","task_id":"T02","task_version":1,"category":"A1","attempt":1,"score":3.65,"approved":true,"minutes":31,"cost_brl":null,"hard_fails":0},{"blind_id":"14b905","model":"mock-flaky","task_id":"T03","task_version":1,"category":"A2","attempt":1,"score":3.6,"approved":true,"minutes":31,"cost_brl":null,"hard_fails":0},{"blind_id":"b4b9e9","model":"mock-flaky","task_id":"T04","task_version":1,"category":"A2","attempt":1,"score":3.65,"approved":true,"minutes":31,"cost_brl":null,"hard_fails":0},{"blind_id":"7b884f","model":"mock-flaky","task_id":"T05","task_version":1,"category":"A3","attempt":1,"score":3.6,"approved":false,"minutes":31,"cost_brl":null,"hard_fails":1},{"blind_id":"364370","model":"mock-flaky","task_id":"T06","task_version":1,"category":"A3","attempt":1,"score":3.55,"approved":true,"minutes":31,"cost_brl":null,"hard_fails":0},{"blind_id":"d9f965","model":"mock-flaky","task_id":"T07","task_version":1,"category":"B1","attempt":1,"score":3.8,"approved":true,"minutes":31,"cost_brl":null,"hard_fails":0},{"blind_id":"3bdf2d","model":"mock-flaky","task_id":"T08","task_version":1,"category":"B1","attempt":1,"score":3.8,"approved":true,"minutes":31,"cost_brl":null,"hard_fails":0},{"blind_id":"73705e","model":"mock-flaky","task_id":"T09","task_version":1,"category":"B2","attempt":1,"score":3.5,"approved":false,"minutes":31,"cost_brl":null,"hard_fails":1},{"blind_id":"ac4fd2","model":"mock-flaky","task_id":"T10","task_version":1,"category":"B2","attempt":1,"score":3.5,"approved":false,"minutes":31,"cost_brl":null,"hard_fails":1},{"blind_id":"9e7166","model":"mock-flaky","task_id":"T11","task_version":1,"category":"C","attempt":1,"score":3.65,"approved":false,"minutes":31,"cost_brl":null,"hard_fails":1},{"blind_id":"215a95","model":"mock-flaky","task_id":"T12","task_version":1,"category":"C","attempt":1,"score":3.8,"approved":false,"minutes":31,"cost_brl":null,"hard_fails":2}],"by_model":[{"model":"mock-good","n":12,"approved_count":12,"mean_score":4.85,"median_minutes":12,"mean_minutes":12,"pass_at_1":1,"pass_at_3":1,"cost_per_approved":null,"score_delta_vs_previous":null,"delta_n":0},{"model":"mock-bad","n":12,"approved_count":0,"mean_score":1.64,"median_minutes":65,"mean_minutes":65,"pass_at_1":0,"pass_at_3":0,"cost_per_approved":null,"score_delta_vs_previous":null,"delta_n":0},{"model":"mock-flaky","n":12,"approved_count":7,"mean_score":3.64,"median_minutes":31,"mean_minutes":31,"pass_at_1":0.58,"pass_at_3":0.58,"cost_per_approved":null,"score_delta_vs_previous":null,"delta_n":0}],"by_model_category":[{"model":"mock-good","category":"A1","n":2,"approved_count":2,"mean_score":4.82,"median_minutes":12,"mean_minutes":12,"pass_at_1":1,"pass_at_3":null,"cost_per_approved":null},{"model":"mock-good","category":"A2","n":2,"approved_count":2,"mean_score":4.82,"median_minutes":12,"mean_minutes":12,"pass_at_1":1,"pass_at_3":null,"cost_per_approved":null},{"model":"mock-good","category":"A3","n":2,"approved_count":2,"mean_score":4.78,"median_minutes":12,"mean_minutes":12,"pass_at_1":1,"pass_at_3":null,"cost_per_approved":null},{"model":"mock-good","category":"B1","n":2,"approved_count":2,"mean_score":4.9,"median_minutes":12,"mean_minutes":12,"pass_at_1":1,"pass_at_3":null,"cost_per_approved":null},{"model":"mock-good","category":"B2","n":2,"approved_count":2,"mean_score":4.9,"median_minutes":12,"mean_minutes":12,"pass_at_1":1,"pass_at_3":null,"cost_per_approved":null},{"model":"mock-good","category":"C","n":2,"approved_count":2,"mean_score":4.88,"median_minutes":12,"mean_minutes":12,"pass_at_1":1,"pass_at_3":null,"cost_per_approved":null},{"model":"mock-bad","category":"A1","n":2,"approved_count":0,"mean_score":1.63,"median_minutes":65,"mean_minutes":65,"pass_at_1":0,"pass_at_3":null,"cost_per_approved":null},{"model":"mock-bad","category":"A2","n":2,"approved_count":0,"mean_score":1.63,"median_minutes":65,"mean_minutes":65,"pass_at_1":0,"pass_at_3":null,"cost_per_approved":null},{"model":"mock-bad","category":"A3","n":2,"approved_count":0,"mean_score":1.58,"median_minutes":65,"mean_minutes":65,"pass_at_1":0,"pass_at_3":null,"cost_per_approved":null},{"model":"mock-bad","category":"B1","n":2,"approved_count":0,"mean_score":1.8,"median_minutes":65,"mean_minutes":65,"pass_at_1":0,"pass_at_3":null,"cost_per_approved":null},{"model":"mock-bad","category":"B2","n":2,"approved_count":0,"mean_score":1.5,"median_minutes":65,"mean_minutes":65,"pass_at_1":0,"pass_at_3":null,"cost_per_approved":null},{"model":"mock-bad","category":"C","n":2,"approved_count":0,"mean_score":1.73,"median_minutes":65,"mean_minutes":65,"pass_at_1":0,"pass_at_3":null,"cost_per_approved":null},{"model":"mock-flaky","category":"A1","n":2,"approved_count":2,"mean_score":3.63,"median_minutes":31,"mean_minutes":31,"pass_at_1":1,"pass_at_3":null,"cost_per_approved":null},{"model":"mock-flaky","category":"A2","n":2,"approved_count":2,"mean_score":3.63,"median_minutes":31,"mean_minutes":31,"pass_at_1":1,"pass_at_3":null,"cost_per_approved":null},{"model":"mock-flaky","category":"A3","n":2,"approved_count":1,"mean_score":3.58,"median_minutes":31,"mean_minutes":31,"pass_at_1":0.5,"pass_at_3":null,"cost_per_approved":null},{"model":"mock-flaky","category":"B1","n":2,"approved_count":2,"mean_score":3.8,"median_minutes":31,"mean_minutes":31,"pass_at_1":1,"pass_at_3":null,"cost_per_approved":null},{"model":"mock-flaky","category":"B2","n":2,"approved_count":0,"mean_score":3.5,"median_minutes":31,"mean_minutes":31,"pass_at_1":0,"pass_at_3":null,"cost_per_approved":null},{"model":"mock-flaky","category":"C","n":2,"approved_count":0,"mean_score":3.72,"median_minutes":31,"mean_minutes":31,"pass_at_1":0,"pass_at_3":null,"cost_per_approved":null}],"metrics":{"generations":36,"rated":36,"approved":19,"median_minutes":31,"mean_minutes":36,"pass_at_1":0.53},"notes":"Score ponderado pela rubrica da tarefa (0 a 5). pass@1 = aprovada na primeira tentativa; pass@3 só com 3 tentativas. Custo por entrega aprovada fica nulo se faltar custo em qualquer entrega aprovada do grupo. Delta compara apenas pares tarefa+versão presentes na rodada anterior."}],"notices":{"R000-selftest":"R000-selftest é rodada sintética (fixtures), não resultado de modelo real."}};
+var $ = function (id) { return document.getElementById(id); };
+
+function shapeFor(board) {
+  var map = {};
+  board.by_model_category.forEach(function (r) {
+    if (!map[r.category]) map[r.category] = {};
+    map[r.category][r.model] = r;
+  });
+  return map;
+}
+
+function cellColor(score) {
+  if (score === null || score === undefined) return 'background:#f1efe8;color:#8a8a83';
+  var t = Math.max(0, Math.min(1, score / 5));
+  var r = Math.round(241 - 217 * t);
+  var g = Math.round(239 - 122 * t);
+  var b = Math.round(232 - 226 * t);
+  return 'background:rgb(' + r + ',' + g + ',' + b + ')';
+}
+
+function arrow(v) {
+  if (v === null || v === undefined) return '—';
+  if (v > 0) return '<span class="arrow-up">▲ +' + v.toFixed(2) + '</span>';
+  if (v < 0) return '<span class="arrow-down">▼ ' + v.toFixed(2) + '</span>';
+  return '± ' + v.toFixed(2);
+}
+
+function render() {
+  var sel = $('round');
+  var id = sel.value;
+  var board = DATA.rounds.filter(function (b) { return b.round_id === id; })[0];
+  if (!board) { $('content').innerHTML = '<div class="card"><p>Sem scoreboard para ' + id + '.</p></div>'; return; }
+  var shape = shapeFor(board);
+  var cats = Object.keys(shape).sort();
+  var models = board.by_model.map(function (m) { return m.model; });
+  var html = '';
+  var small = DATA.rounds.filter(function (b) { return b.round_id === id; })[0].metrics.generations < 12;
+  if (small) html += '<div class="s-warning">Amostra pequena nesta rodada: leia os números como rascunho, não como conclusão.</div>';
+  html += '<div class="card"><h2>Mapa de calor — categoria x modelo (rótulo: S / n)</h2><table><tr><th>categoria</th>';
+  models.forEach(function (m) { html += '<th>' + m + '</th>'; });
+  html += '</tr>';
+  cats.forEach(function (c) {
+    html += '<tr><td>' + c + '</td>';
+    models.forEach(function (m) {
+      var r = shape[c] && shape[c][m];
+      if (!r) { html += '<td class="cell" style="background:#f1efe8">—</td>'; return; }
+      var warn = r.n < 2 ? ' border:1px dashed #b1122e;' : '';
+      html += '<td class="cell" style="' + cellColor(r.mean_score) + warn + '" title="n=' + r.n + '">' + (r.mean_score === null ? '—' : r.mean_score.toFixed(1)) + ' <span style="font-size:10px;color:#444">(' + r.n + ')</span></td>';
+    });
+    html += '</tr>';
+  });
+  html += '</table>';
+  html += '<p class="how">Borda tracejada vermelha = grupo com menos de 2 entregas (dados insuficientes).</p></div>';
+
+  html += '<div class="card"><h2>Resumo por modelo</h2><table><tr><th>modelo</th><th>n</th><th>S</th><th>aprov.</th><th>pass@1</th><th>pass@3</th><th>mediana min</th><th>custo/aprov.</th><th>Δ vs anterior</th></tr>';
+  board.by_model.forEach(function (m) {
+    html += '<tr><td>' + m.model + '</td><td class="num">' + m.n + '</td><td class="num">' + (m.mean_score === null ? '—' : m.mean_score.toFixed(2)) + '</td><td class="num">' + m.approved_count + '</td><td class="num">' + (m.pass_at_1 === null ? '—' : Math.round(m.pass_at_1 * 100) + '%') + '</td><td class="num">' + (m.pass_at_3 === null ? 'dado insuficiente' : Math.round(m.pass_at_3 * 100) + '%') + '</td><td class="num">' + (m.median_minutes === null ? '—' : m.median_minutes) + '</td><td class="num">' + (m.cost_per_approved === null ? '—' : 'R$ ' + m.cost_per_approved.toFixed(2)) + '</td><td class="num">' + arrow(m.score_delta_vs_previous) + ' (n=' + m.delta_n + ')</td></tr>';
+  });
+  html += '</table></div>';
+
+  if (DATA.notices[id]) html += '<div class="s-warning">' + DATA.notices[id] + '</div>';
+  $('content').innerHTML = html;
+}
+
+function init() {
+  var sel = $('round');
+  sel.innerHTML = '';
+  DATA.rounds.forEach(function (b) {
+    var o = document.createElement('option');
+    o.value = b.round_id;
+    o.textContent = b.round_id;
+    if (b.round_id.indexOf('selftest') >= 0) o.className = 'hidden';
+    sel.appendChild(o);
+  });
+  syncVisibility();
+  sel.addEventListener('change', render);
+  $('show-synthetic').addEventListener('change', syncVisibility);
+  render();
+}
+
+function syncVisibility() {
+  var sel = $('round');
+  var show = $('show-synthetic').checked;
+  var firstVisible = null;
+  Array.prototype.forEach.call(sel.options, function (o, i) {
+    var synthetic = o.value.indexOf('selftest') >= 0;
+    o.hidden = synthetic && !show;
+    if (!o.hidden && firstVisible === null) firstVisible = o.value;
+  });
+  if (sel.selectedIndex < 0 || sel.options[sel.selectedIndex].hidden) {
+    sel.value = firstVisible || '';
+  }
+  render();
+}
+
+init();
+</script>
+</body>
+</html>

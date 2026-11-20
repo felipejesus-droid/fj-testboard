@@ -1,6 +1,6 @@
 # Guia de modelos — FJ-TestBoard
 
-Rodada: R000-selftest · gerado em 2026-11-20T12:46:11.433Z · 36 entregas (36 avaliadas).
+Rodada: R000-selftest · gerado em 2026-11-20T12:53:22.164Z · 36 entregas (36 avaliadas).
 
 ## Recomendação por categoria
 
