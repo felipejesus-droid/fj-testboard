@@ -1,0 +1,17 @@
+{
+  "name": "FJ Smart — Inteligência Pessoal",
+  "product": "FJ-TestBoard",
+  "banner": "FJ-TestBoard · INTERNO",
+  "colors": {
+    "midnight_navy": "#0A1628",
+    "electric_cyan": "#00D4FF",
+    "strategic_gold": "#DCAF3C"
+  },
+  "fonts": {
+    "titles": "Syne, system-ui, sans-serif",
+    "body": "DM Sans, system-ui, sans-serif",
+    "numbers": "DM Mono, ui-monospace, monospace"
+  },
+  "symbol": "Δ",
+  "visibility": "internal"
+}

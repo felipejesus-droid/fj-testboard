@@ -1,0 +1,35 @@
+# Slots marcados TBD devem ser preenchidos pelo Felipe antes da rodada real (R001).
+# access: manual (colar o prompt no chat do modelo) | api (adaptador HTTP genérico)
+s:
+  - slot: a
+    label: TBD
+    vendor: TBD
+    version_label: null
+    access: manual
+  - slot: b
+    label: TBD
+    vendor: TBD
+    version_label: null
+    access: manual
+  - slot: c
+    label: TBD
+    vendor: TBD
+    version_label: null
+    access: manual
+mock:
+  - slot: mock-good
+    label: mock-good (fixture forte)
+    vendor: internal
+    version_label: v0.1
+    access: manual
+  - slot: mock-bad
+    label: mock-bad (fixture fraca)
+    vendor: internal
+    version_label: v0.1
+    access: manual
+  - slot: mock-flaky
+    label: mock-flaky (fixture irregular)
+    vendor: internal
+    version_label: v0.1
+    access: manual
+visibility: internal

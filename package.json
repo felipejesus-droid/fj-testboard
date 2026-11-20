@@ -1,0 +1,26 @@
+{
+  "name": "fj-testboard",
+  "version": "0.1.0",
+  "description": "FJ-TestBoard v0.1 - private AI benchmark of FJ Smart - Inteligencia Pessoal",
+  "type": "module",
+  "private": true,
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "test": "node --test",
+    "check": "node scripts/cli.js check",
+    "check:prompts": "node scripts/lock-prompts.js --verify",
+    "guard": "node scripts/guard.js",
+    "round:new": "node scripts/round-new.js",
+    "round:ingest": "node scripts/round-ingest.js",
+    "rate": "node scripts/rate.js",
+    "score": "node scripts/score.js",
+    "guide": "node scripts/guide.js",
+    "dashboard": "node scripts/dashboard.js",
+    "selftest": "node scripts/selftest.js",
+    "verify": "node scripts/verify.js"
+  },
+  "dependencies": {
+    "ajv": "^8.17.1",
+    "yaml": "^2.6.1"
+  }
+}
