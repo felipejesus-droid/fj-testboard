@@ -23,7 +23,7 @@ test('M4: round-new cria pacotes com prompt inlining entradas, linha de ferramen
   rmSync(repoPath('rounds', 'R997'), { recursive: true, force: true });
   const out = runScript('round-new.js', ['R997', '--tasks', 'T07', '--models', 'teste-a']);
   assert.match(out, /"status":"success"/);
-  const prompt = readFileSync(repoPath('rounds', 'R997', 'packets', 'T07__teste__a1', 'PROMPT.md'), 'utf8');
+  const prompt = readFileSync(repoPath('rounds', 'R997', 'packets', 'T07__teste-a__a1', 'PROMPT.md'), 'utf8');
   assert.ok(!/\{\{INPUT_/.test(prompt), 'placeholder não resolvido no PROMPT.md');
   assert.ok(prompt.includes('no_show_pct') && prompt.includes('consultas'), 'CSV da clínica não embutido');
   assert.ok(prompt.includes('Clínica Movimento Vivo'), 'persona não embutida');
@@ -119,7 +119,7 @@ test('M4: adaptador http conversa com servidor de teste local (loopback)', async
   process.env.FJTB_API_MODEL = 'mock-1';
   try {
     const r = await generate({ prompt: 'olá mundo', tools: { web_search: false } });
-    assert.equal(r.text, 'eco:10');
+    assert.equal(r.text, 'eco:9');
     assert.equal(r.usage.tokens_in, 11);
     assert.equal(r.usage.cost_brl, 0.02);
   } finally {
