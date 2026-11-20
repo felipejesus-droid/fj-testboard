@@ -99,8 +99,8 @@ npm run verify
 - `rubrics/` — 6 rubricas (c1..c5 com âncoras 1/3/5).
 - `fixtures/` — entregas sintéticas mock-good / mock-bad / mock-flaky por tarefa.
 - `rounds/` — pacotes, saídas, blind, runs, ratings, scoreboards.
-- `private/answer-keys/` — chaves de resposta dos checks por tarefa (não abrir durante avaliação).
-- `scripts/` — biblioteca de checks, rodada, avaliação, score, painel.
+- `private/answer-keys/` — chaves de resposta dos checks (mantidas **fora do repositório público**, apenas no ambiente do dono; sem elas os checks de T12 rodam em modo reduzido, sinalizado no detalhe do check).
+- `scripts/` — biblioteca de checks, rodada de execução, avaliação, score, painel.
 
 ## Regras do jogo (v0.1)
 

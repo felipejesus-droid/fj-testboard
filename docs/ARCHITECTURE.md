@@ -21,7 +21,7 @@ flowchart LR
 | Camada | Onde | Responsabilidade |
 |---|---|---|
 | Contratos | `schemas/*.schema.json` + `scripts/lib/validate.js` | Validação com ajv |
-| Dados | `cases/`, `tasks/`, `rubrics/`, `private/answer-keys/` | Casos fictícios, cartões de tarefa, rubricas, chaves de resposta |
+| Dados | `cases/`, `tasks/`, `rubrics/`, `private/answer-keys/` (local, não distribuído) | Casos fictícios, cartões de tarefa, rubricas, chaves de resposta |
 | Checks | `scripts/checks/` | Biblioteca de checagens automáticas (hard/soft) |
 | Harnês | `scripts/round-*.js`, `scripts/selftest.js` | Rodadas, packets, ingest, cegamento |
 | Avaliação | `scripts/rate.js`, `scripts/score.js`, `scripts/guide.js` | Rating local e estatística |

@@ -19,3 +19,4 @@ Formato: Decisão | Motivo | Como mudar.
 - D-14: aviso de descegamento: ingest escaneia a saída por nomes de fornecedor/modelo e emite aviso no envelope.
 - D-15: rounds/ são dados operacionais (regeneráveis via selftest) e ficam fora do git; scoreboards ficam no diretório da rodada.
 - D-16: revelação do blind-map no avaliador só quando toda a rodada está avaliada (API /api/reveal devolve 403 caso contrário).
+- D-17: repositório tornado público pelo dono; `private/answer-keys/` segue fora do git (histórico reescrito antes do primeiro push) e os checks que dependem de gabarito degradam com aviso quando a pasta não existe (T12 em modo reduzido via pwaStructural); testes dependentes de gabarito são pulados nesse cenário.

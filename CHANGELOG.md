@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## Entrega pública (primeiro push)
+- repositório tornado público pelo dono; `private/answer-keys/` fica fora do git (histórico reescrito antes do push)
+- checks de gabarito degradam sem a pasta `private/` (T12 em modo reduzido, sinalizado no detalhe); testes dependentes de gabarito são pulados nesse cenário
+
 ## 0.1.0 — Fase de construção (M1–M6)
 - M1: schemas JSON (persona, task-card, round, run, rating, scoreboard), validação ajv, guard de visibilidade, envelope de CLI, docs base. Tag `m1-done`.
 ## M3

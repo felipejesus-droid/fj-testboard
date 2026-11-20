@@ -119,7 +119,11 @@ test('M3: mock-flaky existe e nunca passa onde mock-bad acerta mais perto do bom
   }
 });
 
-test('M3/T12: detectors contam exatamente 12 defeitos no app defeituoso', () => {
+test('M3/T12: detectors contam exatamente 12 defeitos no app defeituoso', (t) => {
+  if (!existsSync(repoPath('private', 'answer-keys', 'T12.yaml'))) {
+    t.skip('gabarito privado T12 não distribuído no repositório público');
+    return;
+  }
   const dir = repoPath('cases', 'shared', 'T12-flawed');
   const files = {
     'index.html': readFileSync(join(dir, 'index.html'), 'utf8'),
@@ -131,7 +135,11 @@ test('M3/T12: detectors contam exatamente 12 defeitos no app defeituoso', () => 
   assert.ok(/12 defeitos corrigidos/.test(r.detail));
 });
 
-test('M3/T12: revisão corrigida zera os 12 defeitos e a rasgada fixa menos de 9', () => {
+test('M3/T12: revisão corrigida zera os 12 defeitos e a rasgada fixa menos de 9', (t) => {
+  if (!existsSync(repoPath('private', 'answer-keys', 'T12.yaml'))) {
+    t.skip('gabarito privado T12 não distribuído no repositório público');
+    return;
+  }
   const good = readFileSync(join(FX, 'mock-good', 'T12', 'revisao.md'), 'utf8');
   const rg = t12Detectors({ files: {}, text: [good], plain: good });
   assert.ok(/12\/12 defeitos corrigidos/.test(rg.detail), `esperado 12/12, veio: ${rg.detail}`);

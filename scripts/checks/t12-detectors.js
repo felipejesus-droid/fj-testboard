@@ -1,11 +1,12 @@
 import YAML from 'yaml';
-import { readFileSync } from 'node:fs';
+import { readFileSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { repoPath } from '../lib/util.js';
 import { pwaStructural } from './pwaChecks.js';
 
 function loadDefects() {
   const p = join(repoPath(), 'private', 'answer-keys', 'T12.yaml');
+  if (!existsSync(p)) return null;
   return YAML.parse(readFileSync(p, 'utf8')).defects;
 }
 
@@ -33,8 +34,13 @@ export function t12Detectors(input) {
     sw = extracted['sw.js'] || '';
     manifestRaw = extracted['manifest.webmanifest'] || '';
   }
+  const defects = loadDefects();
+  if (!defects) {
+    const res = pwaStructural(input);
+    return { pass: res.pass, detail: `modo reduzido (gabarito privado ausente): ${res.detail}` };
+  }
   const stillBroken = [];
-  for (const d of loadDefects()) {
+  for (const d of defects) {
     let broken = false;
     const target = d.detector.file === 'sw.js' ? sw : d.detector.file === 'manifest.webmanifest' ? manifestRaw : html;
     switch (d.detector.kind) {
