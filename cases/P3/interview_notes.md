@@ -1,0 +1,11 @@
+# Notas de entrevista — Componentes Vulcano (uso em T04 e T08)
+L01 Sérgio: "aqui orçamento é do jeito antigo: o comprador liga, a gente olha preço de matéria-prima na planilha"
+L02 Sérgio: "o Cicero sabe de cor o ajuste da máquina 4, eu não sei o que acontece se ele sair"
+L03 Sérgio: "refugo da injetora a gente só olha quando o cliente devolve peça"
+L04 Sérgio: "cotação demora em média quatro dias úteis, e o cliente quer no mesmo dia"
+L05 Sérgio: "cliente que compra sempre some quando atrasa o orçamento, aí vem outro orçamento depois"
+L06 Sérgio: "TODO: registrar o setup da máquina 4 e da máquina 7 antes do fim do ano"
+L07 Sérgio: "máquina 7 parou duas vezes no semestre por ajuste errado de molde novo"
+L08 Sérgio: "financeiro fecha no PDF do ERP, o resto é planilha paralela que o contador faz"
+L09 Sérgio: "o orçamento sai depois que eu aprovo, e eu, às vezes, só vejo a pilha no fim do dia"
+L10 Sérgio: "não temos histórico estruturado de por que perdemos uma cotação"

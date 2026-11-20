@@ -1,0 +1,20 @@
+# Marcas reais que NÃO podem aparecer como nome de empresa, produto ou em texto de caso.
+# Ferramentas genéricas citadas em tools_in_use (ex.: planilha, WhatsApp, e-mail corporativo) não contam como violação.
+brands:
+  - iFood
+  - Magalu
+  - Magazine Luiza
+  - Natura
+  - Booking
+  - Airbnb
+  - Sebrae
+  - Totvs
+  - RD Station
+  - Hotmart
+  - Locaweb
+  - Mercado Livre
+  - Americanas
+  - Shopee
+  - Salesforce
+  - HubSpot
+visibility: internal

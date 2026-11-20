@@ -1,0 +1,11 @@
+# Notas de entrevista — Duarte Meirelles Contabilidade (uso em T01, T05 e T09)
+L01 Gisela: "cliente nosso chega por indicação ou não chega, simples assim"
+L02 Gisela: "eu sei que deveria postar, mas escrevo um parágrafo e desisto"
+L03 Gisela: "quando o contador concorrente aparece com conteúdo, o cliente liga perguntando se a gente faz igual"
+L04 Gisela: "onboarding é o grande desarranjo: sai contrato no papel e documento no WhatsApp, um por um"
+L05 Gisela: "clínica de saúde paga melhor honorário e também cobra melhor atendimento"
+L06 Gisela: "não sei quanto custa atender cada cliente, o preço veio do escritório antigo do meu pai"
+L07 Gisela: "equipe são três: eu, o Anderson e a estagiária"
+L08 Gisela: "Anderson detesta publicar, mas escreve bem e-mail explicando imposto"
+L09 Gisela: "a variedade de cliente atrapalha: hoje atendo dentista, lojista e pastor"
+L10 Gisela: "quero focar em clínica porque leva mais trabalho recorrente"

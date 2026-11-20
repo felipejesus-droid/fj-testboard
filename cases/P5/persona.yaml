@@ -1,0 +1,33 @@
+id: P5
+company_name: Trilha Nova Formação
+segment: Escola de idiomas e cursos profissionalizantes
+city: Recife (PE)
+size: pequena
+digital_maturity: 2
+maturity_reason: Tem identidade visual e perfil nas redes, mas matrícula, presença e cobrança funcionam em fichas de papel e boleto manual; não há nenhuma trilha de dados do aluno.
+tools_in_use:
+  - planilhas de matrícula e presença
+  - boleto bancário avulso
+  - perfil nas redes sociais (atualização manual)
+  - grupos de turma em aplicativo de mensagens
+pain_points:
+  - Aluno some em falta silenciosa e a escola só percebe quando ele deixa de pagar
+  - Matrícula em papel duplica trabalho na secretaria e erra turma
+  - cobrança por boleto manual derruba a receita e gera conversa chata com aluno
+  - A escola não consegue dizer qual curso retém e qual perde aluno
+brand_tone: Animado e encorajador, fala de aprendizado como mudança de vida concreta
+brand_colors:
+  - '#0F7A5A'
+  - '#F2B705'
+  - '#F5F1E8'
+kpi_csv: cases/P5/kpis.csv
+interview_notes: cases/P5/interview_notes.md
+owner_professional:
+  name: Rafaela Ponte
+  specialty: Coordenação pedagógica de idiomas e formação profissional de adultos
+  audience: Adultos de 25 a 45 anos buscando recolocação ou incremento de carreira
+  goals:
+    - Reduzir evasão silenciosa com acompanhamento de presença
+    - Transformar matrícula em fluxo digital simples
+    - Saber qual turma e qual curso retêm mais aluno
+visibility: internal

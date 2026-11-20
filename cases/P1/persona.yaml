@@ -1,0 +1,33 @@
+id: P1
+company_name: Pousada Céu de Pinhal
+segment: Hospedagem (pousada na Serra Gaúcha)
+city: Gramado (RS)
+size: pequena
+digital_maturity: 2
+maturity_reason: Tem site próprio e um sistema de reservas simples, mas o controle de quartos e de limpeza vive em papel e planilhas; nenhuma automação de comunicação com hóspedes.
+tools_in_use:
+  - site próprio com formulário de reserva
+  - sistema de reservas simples (agendamento por e-mail)
+  - planilhas para quartos e limpeza
+  - WhatsApp no celular da recepção
+pain_points:
+  - Chegadas e saídas de hóspedes em dias de pico confundem a recepção e a governança
+  - Camareiras recebem a lista de quartos por um bilhete de papel, às vezes desatualizado
+  - Não existe histórico do hóspede, quem voltou é tratado como primeira viagem
+  - Reservas diretas disputam espaço com várzea de mensagens em três canais diferentes
+brand_tone: Acolhedor e montanhês, como quem recebe visita em casa de família na serra
+brand_colors:
+  - '#12492F'
+  - '#8C5A2B'
+  - '#F2E8DC'
+kpi_csv: cases/P1/kpis.csv
+interview_notes: cases/P1/interview_notes.md
+owner_professional:
+  name: Marta Sobreira
+  specialty: Hospitalidade de montanha e gestão de pousada familiar
+  audience: Casais e famílias que viajam de fim de semana ou feriado à Serra Gaúcha
+  goals:
+    - Ocupação estável na baixa temporada (maio a agosto)
+    - Menos retrabalho entre recepção e governança
+    - Reserva direta crescendo sem dependência de plataformas
+visibility: internal

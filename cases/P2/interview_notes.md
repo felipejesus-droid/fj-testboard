@@ -1,0 +1,16 @@
+# Notas de entrevista — Clínica Movimento Vivo (uso em T03, T07 e T10)
+L01 Renan: "a agenda da tarde parece queijo suíço: o paciente confirma e não aparece"
+L02 Renan: "a retenção é a que mais dói, não é trazer paciente novo"
+L03 Renan: "o lembrete hoje é a garota da recepção ligando um a um, dá umas duas horas por dia"
+L04 Renan: "falta mais na segunda de manhã e na sexta à noite, resto é sorte"
+L05 Renan: "paciente de convênio falta mais que o particular, talvez porque não dói no bolso"
+L06 Renan: "a gente manda um PDF do plano de tratamento no primeiro dia e nunca mais fala dele"
+L07 Renan: "metade dos pacientes nem sabe quantas sessões tem o plano dela"
+L08 Renan: "novembro é nosso pior mês de faturamento por causa do fim de ano"
+
+L09 Renan: "instagram da clínica é quase abandonado, posto foto lá quando lembro"
+L10 Renan: "paciente pergunta tudo pelo WhatsApp e a resposta vira consulta grátis de 20 minutos"
+L11 Renan: "não medimos satisfação de jeito nenhum, só reclamação formal contamos"
+L12 Renan: "o retorno do paciente cai quando o marido recupera, o tratamento vira opção e não prioridade"
+L13 Renan: "horário de terça e quinta às 19h vive vazio e é o que o público pede"
+L14 Renan: "a caneta da recepção anota recado em papel colado no monitor"

@@ -1,0 +1,33 @@
+id: P2
+company_name: Clínica Movimento Vivo
+segment: Fisioterapia e bem-estar (clínica de porte médio)
+city: Curitiba (PR)
+size: media
+digital_maturity: 3
+maturity_reason: Usa agenda digital e sistema de prontuário, mas o lembrete de consulta ainda é manual e o índice de falta nas consultas corrói a agenda.
+tools_in_use:
+  - agenda digital do sistema da clínica
+  - prontuário eletrônico
+  - planilha financeira mensal
+  - WhatsApp comercial (respostas manuais)
+pain_points:
+  - Pacientes faltam à consulta sem avisar e a agenda fica com buracos no mesmo dia
+  - Recepção liga um a um para confirmar, ocupando a quinta parte do expediente
+  - Não existe follow-up estruturado do plano de tratamento, o paciente some no meio
+  - O dono acumula gestão clínica, atendimento e marketing sem apoio de dados
+brand_tone: Cuidadoso e claro, fala de corpo e movimento sem jargão médico
+brand_colors:
+  - '#1B6E8C'
+  - '#7FD1C3'
+  - '#F7F5F0'
+kpi_csv: cases/P2/kpis.csv
+interview_notes: cases/P2/interview_notes.md
+owner_professional:
+  name: Renan Azevedo
+  specialty: Fisioterapia ortopédica e reabilitação de coluna
+  audience: Pacientes adultos (30–60 anos) com dor crônica e pós-operatório
+  goals:
+    - Reduzir faltas sem floodar o paciente de mensagens
+    - Ocupar os horários de terça e quinta à noite, que hoje sobram
+    - Profissionalizar a comunicação de saúde das redes da clínica
+visibility: internal

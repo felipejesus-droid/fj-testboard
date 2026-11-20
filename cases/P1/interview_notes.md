@@ -1,0 +1,21 @@
+# Notas de entrevista — Pousada Céu de Pinhal (fragmentos também usados em T02)
+# Transcrição informal da conversa com Marta, dona da pousada. Cada linha tem número (Lnn).
+
+L01 Marta: "a gente ligou elas duas, né, a recepção e a limpeza... na alta temporada é aquela confusão"
+L02 Marta: "a camareira chega e o quarto ainda tá ocupado, porque ninguém avisou que o hóspede estendeu"
+L03 Marta: "eu sou a pior pessoa pra dizer o que funciona, eu só sei o que incomoda"
+L04 Marta: "nossa gerência da recepção é a Mariana, ela segura tudo no WhatsApp dela"
+L05 Marta: "mensagens de hóspede chegam por três lugares: WhatsApp, e-mail do site e telefone da recepção"
+L06 Marta: "ninguém consegue responder rápido porque cada um olha um lugar"
+L07 Marta: "nosso melhor mês foi julho, sempre foi julho, festa da colônia e o frio"
+L08 Marta: "agosto último foi o nosso recorde, a semana da festa da colônia lotou tudo"
+L09 Marta: "não mexemos em preço de diária há dois anos, tá abaixo do que podia"
+L10 Marta: "ano passado subimos a diária pra cima do concorrente da rua de cima"
+L11 Marta: "nóis é o mesmo time desde 2021: eu, a Mariana e duas camareiras, quatro pessoas"
+L12 Marta: "no verão contratamos duas camareiras novas, a equipe dobrou"
+L13 Marta: "a planilha de limpeza quebra toda semana, alguém apaga linha sem querer"
+L14 Marta: "hóspede que voltou aqui se a gente não lembra, aí fica chato pra ele"
+L15 Marta: "eu queria saber antes de dezembro quantos quartos vão precisar de roupão novo"
+L16 Marta: "reserva direta é a que dá mais lucro, mas ela perde pra plataforma na busca"
+L17 Marta: "cadê o histórico do hóspede? some nos papéis da recepção"
+L18 Marta: "camareira anota no bilhete, depois a Mariana passa pra outra planilha, dá trabalho dobrado"

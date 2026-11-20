@@ -1,0 +1,33 @@
+id: P4
+company_name: Duarte Meirelles Contabilidade
+segment: Escritório de contabilidade (microempresa de serviços)
+city: Belo Horizonte (MG)
+size: micro
+digital_maturity: 3
+maturity_reason: Já trabalha com sistema em nuvem para escrituração e portais governamentais, mas captação de clientes e conteúdo dependem inteiramente da sócia e de indicação.
+tools_in_use:
+  - sistema de contabilidade em nuvem
+  - portais do governo (prefeitura, estado, federal)
+  - planilhas de honorários
+  - WhatsApp Business
+pain_points:
+  - Captação de novos clientes depende só de indicação boca a boca
+  - A sócia quer publicar conteúdo de autoridade mas trava na hora de escrever
+  - Onboarding de cliente novo é informel, os documentos chegam aos poucos por WhatsApp
+  - Não sabe qual serviço é rentável, os honorários foram herdados do escritório antigo
+brand_tone: Sóbrio e confiável, linguagem de quem explica imposto sem assustar
+brand_colors:
+  - '#123B5C'
+  - '#C0A060'
+  - '#FFFFFF'
+kpi_csv: cases/P4/kpis.csv
+interview_notes: cases/P4/interview_notes.md
+owner_professional:
+  name: Gisela Duarte
+  specialty: Contabilidade para prestadores de serviço e clínicas de saúde
+  audience: Profissionais liberais e pequenas empresas de serviço em Minas
+  goals:
+    - Virar referência em contabilidade para clínicas e consultórios
+    - Padronizar o onboarding de cliente novo
+    - Rever a tabela de honorários com base em custo por cliente
+visibility: internal

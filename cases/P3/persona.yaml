@@ -1,0 +1,33 @@
+id: P3
+company_name: Componentes Vulcano
+segment: Metalurgia e plásticos (injeção de peças, indústria de porte médio)
+city: Joinville (SC)
+size: media
+digital_maturity: 1
+maturity_reason: Orçamentos e ordens de produção circulam em papel e pastas compartilhadas soltas; o dono aprova tudo pessoalmente e os relatórios saem do sistema do ERP apenas no fim do mês, em PDF.
+tools_in_use:
+  - ERP antigo (módulos de estoque e fiscal apenas)
+  - pastas compartilhadas em rede local
+  - e-mail corporativo
+  - papel na fábrica e na cotação
+pain_points:
+  - Orçamento de cliente demora dias para sair porque depende de consulta manual de preço
+  - Índice de refugo da injetora não é acompanhado mês a mês, só quando estoura
+  - O conhecimento de processo das máquinas antigas vive na cabeça de dois veteranos próximos de se aposentar
+  - Nenhuma cobrança sistemática, cliente bom some e ninguém percebe por semanas
+brand_tone: Direto, técnico e sem floreio, conversa de chão de fábrica
+brand_colors:
+  - '#8C2B2B'
+  - '#D9A13B'
+  - '#2E2E2E'
+kpi_csv: cases/P3/kpis.csv
+interview_notes: cases/P3/interview_notes.md
+owner_professional:
+  name: Sérgio Vuntz
+  specialty: Gestão industrial de pequenas séries de peças injetadas
+  audience: Compradores técnicos de indústrias de médio porte do Sul do país
+  goals:
+    - Encurtar o ciclo de cotação de dias para horas
+    - Reduzir refugo da injetora com acompanhamento simples
+    - Registrar o conhecimento de processo dos veteranos antes da aposentadoria
+visibility: internal
